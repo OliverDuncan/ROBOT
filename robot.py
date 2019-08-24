@@ -18,10 +18,28 @@ class Robot:
         self.sensor3=sensor3
         self.sensor4=sensor4
 
+    def reset(self):
+        self.motorB.reset_angle(0)
+        self.motorC.reset_angle(0)
+    
+
     def forward(self,speed,distance):
+        self.reset()
+        print("test")
         self.motorB.run(speed)
         self.motorC.run(speed)
-        while self.motorC() < distance:
+        while self.motorC.angle() < distance:
+            wait(10)
+        self.motorB.run(0)
+        self.motorC.run(0)
+
+    def backward(self,speed,distance):
+        self.reset()
+        self.motorB.run(-speed)
+        self.motorC.run(-speed)
+        while self.motorC.angle() > distance:
+            print(self.motorC.angle())
+            print("\n")
             wait(10)
         self.motorB.run(0)
         self.motorC.run(0)
