@@ -13,15 +13,15 @@ class Robot:
         self.motorB=motorB
         self.motorC=motorC
         self.motorD=motorD
-        self.sensor1=sensor1
-        self.sensor2=sensor2
-        self.sensor3=sensor3
-        self.sensor4=sensor4
+        self.colorSensorright=sensor1
+        self.colorSensorleft=sensor2
+        self.gyroSensor=sensor3
+        self.touchSensor=sensor4
 
     def reset(self):
         self.motorB.reset_angle(0)
         self.motorC.reset_angle(0)
-    
+        self.gyroSensor.reset_angle(0)
 
     def forward(self,speed,distance):
         self.reset()
@@ -35,11 +35,33 @@ class Robot:
 
     def backward(self,speed,distance):
         self.reset()
-        self.motorB.run(-speed)
-        self.motorC.run(-speed)
-        while self.motorC.angle() > distance:
+        self.motorB.run(speed*-1)
+        self.motorC.run(speed*-1)
+        while self.motorC.angle() > -distance:
             print(self.motorC.angle())
             print("\n")
             wait(10)
+        self.motorB.run(0)
+        self.motorC.run(0)
+
+    def turnleft(self,speed,angle):
+        self.reset()
+        self.motorB.run(speed*-1)
+        self.motorA.run(speed)
+        print("turn")
+        while self.gyroSensor.angle() < angle:
+            wait(5)
+            print(self.gyroSensor.angle())
+        self.motorB.run(0)
+        self.motorC.run(0)
+
+    def turnright(self,speed,angle):
+        self.reset()
+        self.motorB.run(speed)
+        self.motorA.run(speed*-1)
+        print("turn")
+        while self.gyroSensor.angle() > angle:
+            wait(5)
+            print(self.gyroSensor.angle())
         self.motorB.run(0)
         self.motorC.run(0)
