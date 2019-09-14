@@ -85,3 +85,22 @@ class Robot:
                 wait(5)
                 print(self.motorA.angle())
             self.motorA.run(0)
+
+    def attachMotorD(self,speed,distance,direction):
+        self.reset()
+        if direction == 1:
+            self.motorD.run(speed)
+            print("forMotorDRotate")
+            while self.motorD.angle() > distance:
+                wait(5)
+                print(self.motorD.angle())
+            self.motorD.run(0)
+
+        elif direction == -1:
+            self.motorD.run(speed*direction)
+            print("aftMotorDRotate")
+            while self.motorD.angle() < distance:
+                wait(5)
+                print(self.motorD.angle())
+            self.motorD.run(0)
+    
