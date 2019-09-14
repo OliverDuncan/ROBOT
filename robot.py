@@ -19,8 +19,10 @@ class Robot:
         self.touchSensor=sensor4
 
     def reset(self):
+        self.motorA.reset_angle(0)
         self.motorB.reset_angle(0)
         self.motorC.reset_angle(0)
+        self.motorD.reset_angle(0)
         self.gyroSensor.reset_angle(0)
 
     def forward(self,speed,distance):
@@ -65,3 +67,21 @@ class Robot:
             print(self.gyroSensor.angle())
         self.motorB.run(0)
         self.motorC.run(0)
+    
+    def DogGearA(self,speed,distance,direction):
+        self.reset()
+        if direction == 1:
+            self.motorA.run(speed)
+            print("clDogRotate")
+            while self.motorA.angle() > distance:
+                wait(5)
+                print(self.motorA.angle())
+            self.motorA.run(0)
+
+        elif direction == -1:
+            self.motorA.run(speed*direction)
+            print("cnclDogRotate")
+            while self.motorA.angle() < distance:
+                wait(5)
+                print(self.motorA.angle())
+            self.motorA.run(0)
