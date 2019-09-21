@@ -22,8 +22,12 @@ sensor4=TouchSensor(Port.S4)
 
 hoid= Robot(motorA,motorB,motorC,motorD,sensor1,sensor2,sensor3,sensor4)
 
-hoid.DogGearA(250,660,-1)
-hoid.forward(250,660)
-hoid.backward(250,660)
-hoid.turnleft(250,81)
-hoid.turnright(250,81)
+# crane = Crane(hoid)
+# crane.run()
+ bridge = Bridge (hoid)
+ bridge.run()
+
+# hoid.forward(250,660)
+# hoid.backward(250,660)
+# hoid.turnleft(250,81)
+# hoid.turnright(250,81)
