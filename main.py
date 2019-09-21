@@ -8,6 +8,7 @@ from pybricks.parameters import (Port, Stop, Direction, Button, Color,
 from pybricks.tools import print, wait, StopWatch
 from pybricks.robotics import DriveBase
 from robot import Robot
+from bridge import Bridge
 
 # Write your program here
 brick.sound.beep()
@@ -27,4 +28,9 @@ hoid= Robot(motorA,motorB,motorC,motorD,sensor1,sensor2,sensor3,sensor4)
 #hoid.backward(250,660)
 #hoid.turnleft(250,81)
 #hoid.turnright(250,81)
-hoid.shallowTurn(250,150,90,-1)
+#hoid.shallowTurn(250,150,90,-1)
+# crane = Crane(hoid)
+# crane.run()
+bridge = Bridge(hoid)
+bridge.run()
+
