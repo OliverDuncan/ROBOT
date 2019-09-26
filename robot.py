@@ -91,7 +91,8 @@ class Robot:
         if direction == 1:
             self.motorD.run(speed)
             print("forMotorDRotate")
-            while self.motorD.angle() > distance:
+            print(self.motorD.angle())
+            while self.motorD.angle() < distance:
                 wait(5)
                 print(self.motorD.angle())
             self.motorD.run(0)

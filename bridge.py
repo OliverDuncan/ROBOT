@@ -11,7 +11,9 @@ class Bridge:
        self.robot=robot
     
     def run(self):
-        self.robot.forward(250,2160)
-        self.robot.turnright(250,80)
-        self.robot.forward(250,720)
-        self.robot.attachMotorD(250,1,1)        
+        self.robot.forward(250,1925)
+        self.robot.turnright(250,70)
+        self.robot.forward(300,700)
+        self.robot.forward(800,700)
+        self.robot.forward(250,400)
+        self.robot.attachMotorD(250,360,-1)        
