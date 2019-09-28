@@ -9,6 +9,7 @@ from pybricks.tools import print, wait, StopWatch
 from pybricks.robotics import DriveBase
 from robot import Robot
 from bridge import Bridge
+from muchPointExploit import MuchPointExploit
 
 # Write your program here
 brick.sound.beep()
@@ -23,14 +24,18 @@ sensor4=TouchSensor(Port.S4)
 
 hoid= Robot(motorA,motorB,motorC,motorD,sensor1,sensor2,sensor3,sensor4)
 
-#hoid.DogGearA(250,660,-1)
-#hoid.forward(250,660)
-#hoid.backward(250,660)
-#hoid.turnleft(250,81)
-#hoid.turnright(250,81)
-#hoid.shallowTurn(250,150,90,-1)
+#hoid.DogGearA(100,660,-1)
+#hoid.forward(100,660)
+#hoid.backward(100,660)
+#hoid.turnleft(100,81)
+#hoid.turnright(50,81)
+#hoid.shallowTurn(50,150,90,-1)
 # crane = Crane(hoid)
 # crane.run()
-bridge = Bridge(hoid)
-bridge.run()
+#bridge = Bridge(hoid)
+#bridge.run()
+# hoid.attachMotorD(50,660,-1)
+
+muchPointExploit = MuchPointExploit(hoid)
+muchPointExploit.run()
 
