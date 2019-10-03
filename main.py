@@ -24,7 +24,7 @@ sensor4=TouchSensor(Port.S4)
 
 hoid= Robot(motorA,motorB,motorC,motorD,sensor1,sensor2,sensor3,sensor4)
 
-#hoid.DogGearA(100,660,-1)
+#hoid.DogGearA(100,6,-1)
 #hoid.forward(100,660)
 #hoid.backward(100,660)
 #hoid.turnleft(100,81)
@@ -36,6 +36,18 @@ hoid= Robot(motorA,motorB,motorC,motorD,sensor1,sensor2,sensor3,sensor4)
 #bridge.run()
 # hoid.attachMotorD(50,660,-1)
 
-muchPointExploit = MuchPointExploit(hoid)
-muchPointExploit.run()
+#muchPointExploit = MuchPointExploit(hoid)
+#muchPointExploit.run()
+
+countED=0
+
+if Button.CENTER in brick.buttons():
+    countED=countED+1
+    if Button
+        if countED=1
+            crane.run()
+
+
+
+
 

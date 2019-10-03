@@ -77,7 +77,7 @@ class Robot:
         if direction == 1:
             self.motorA.run(speed*self.MED_MOTOR)
             print("clDogRotate")
-            while self.motorA.angle() > distance*self.DEG_TO_ROT:
+            while self.motorA.angle() < distance*self.DEG_TO_ROT:
                 wait(5)
                 print(self.motorA.angle())
             self.motorA.run(0)
@@ -85,7 +85,8 @@ class Robot:
         elif direction == -1:
             self.motorA.run(speed*direction*self.MED_MOTOR)
             print("cnclDogRotate")
-            while self.motorA.angle() < distance*direction*self.DEG_TO_ROT:
+            print(distance*direction*self.DEG_TO_ROT)
+            while self.motorA.angle() > distance*direction*self.DEG_TO_ROT:
                 wait(5)
                 print(self.motorA.angle())
             self.motorA.run(0)
@@ -114,13 +115,13 @@ class Robot:
         self.motorC.run(leftspeed*self.LAR_MOTOR)
         print("turn")
         if direction == -1:
-            while self.gyroSensor.angle() < angle: 
+            while self.gyroSensor.angle() > angle: 
                 wait(5)
                 print(self.gyroSensor.angle())
             self.motorB.run(0)
             self.motorC.run(0)
         elif direction == 1:
-            while self.gyroSensor.angle() > angle:
+            while self.gyroSensor.angle() < angle:
                 wait(5)
                 print(self.gyroSensor.angle())
             self.motorB.run(0)
