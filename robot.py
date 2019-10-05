@@ -50,7 +50,7 @@ class Robot:
         self.motorB.run(0)
         self.motorC.run(0)
 
-    def turnleft(self,speed,angle):
+    def turnright(self,speed,angle):
         self.reset()
         self.motorB.run(speed*-1*self.LAR_MOTOR)
         self.motorC.run(speed*self.LAR_MOTOR)
@@ -61,7 +61,7 @@ class Robot:
         self.motorB.run(0)
         self.motorC.run(0)
 
-    def turnright(self,speed,angle):
+    def turnleft(self,speed,angle):
         self.reset()
         self.motorB.run(speed*self.LAR_MOTOR)
         self.motorC.run(speed*-1*self.LAR_MOTOR)
@@ -109,6 +109,7 @@ class Robot:
                 wait(5)
                 print(self.motorD.angle())
             self.motorD.run(0)
+    
     def shallowTurn(self,rightspeed,leftspeed,angle,direction):
         self.reset()
         self.motorB.run(rightspeed*self.LAR_MOTOR)

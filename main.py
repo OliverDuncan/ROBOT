@@ -9,7 +9,9 @@ from pybricks.tools import print, wait, StopWatch
 from pybricks.robotics import DriveBase
 from robot import Robot
 from bridge import Bridge
+from crane import Crane
 from muchPointExploit import MuchPointExploit
+from elevator import Elevator
 
 # Write your program here
 brick.sound.beep()
@@ -30,24 +32,24 @@ hoid= Robot(motorA,motorB,motorC,motorD,sensor1,sensor2,sensor3,sensor4)
 #hoid.turnleft(100,81)
 #hoid.turnright(50,81)
 #hoid.shallowTurn(50,150,90,-1)
-# crane = Crane(hoid)
-# crane.run()
-#bridge = Bridge(hoid)
-#bridge.run()
+crane = Crane(hoid)
+crane.run()
+# bridge = Bridge(hoid)
+# bridge.run()
 # hoid.attachMotorD(50,660,-1)
 
 #muchPointExploit = MuchPointExploit(hoid)
 #muchPointExploit.run()
 
-countED=0
+# countED=0
 
-if Button.CENTER in brick.buttons():
-    countED=countED+1
-    if Button
-        if countED=1
-            crane.run()
-
-
+# if Button.CENTER in brick.buttons():
+#     countED=countED+1
+#     if Button
+#         if countED=1
+#             crane.run()
+# elevator=Elevator(hoid)
+# elevator.run()
 
 
 
