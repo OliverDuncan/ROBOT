@@ -26,30 +26,49 @@ sensor4=TouchSensor(Port.S4)
 
 hoid= Robot(motorA,motorB,motorC,motorD,sensor1,sensor2,sensor3,sensor4)
 
-#hoid.DogGearA(100,6,-1)
-#hoid.forward(100,660)
-#hoid.backward(100,660)
-#hoid.turnleft(100,81)
-#hoid.turnright(50,81)
-#hoid.shallowTurn(50,150,90,-1)
-crane = Crane(hoid)
-crane.run()
-# bridge = Bridge(hoid)
-# bridge.run()
-# hoid.attachMotorD(50,660,-1)
+# #hoid.DogGearA(100,6,-1)
+# #hoid.forward(100,660)
+# #hoid.backward(100,660)
+# #hoid.turnleft(100,81)
+# #hoid.turnright(50,81)
+# #hoid.shallowTurn(50,150,90,-1)
+# crane = Crane(hoid)
+# #crane.run()
+# # bridge = Bridge(hoid)
+# # bridge.run()
+# # hoid.attachMotorD(50,660,-1)
 
-#muchPointExploit = MuchPointExploit(hoid)
-#muchPointExploit.run()
+# #muchPointExploit = MuchPointExploit(hoid)
+# #muchPointExploit.run()
 
-# countED=0
-
-# if Button.CENTER in brick.buttons():
-#     countED=countED+1
-#     if Button
-#         if countED=1
-#             crane.run()
 # elevator=Elevator(hoid)
 # elevator.run()
 
 
+countED=0
+names=["crane","bridge","muchPointExploit","elevator"]
+missions=[Crane(hoid),Bridge(hoid),MuchPointExploit(hoid),Elevator(hoid)]
 
+while True:
+    brick.display.text(names[countED])
+    if Button.CENTER in brick.buttons():
+        missions[countED].run()
+        countED++
+    elif Button.UP in brick.buttons():
+        countED++
+    elif Button.DOWN in brick.buttons():
+        countED--
+
+
+# if countED=1
+#             crane.run()
+#             countED++
+#         elif countED=2
+#             bridge.run()
+#             countED++
+#         elif countED=3
+#             muchPointExploit.run()
+#             countED++
+#         elif countEd=4
+#             elevator.run()
+#             countED++
