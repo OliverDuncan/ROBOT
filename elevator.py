@@ -12,7 +12,7 @@ class Elevator:
     
     def run(self):
         self.robot.forward(50,5.5)
-        self.robot.turnleft(25,30)
-        self.robot.forward(50,.7)
-        self.robot.turnright(75,30)
+        self.robot.turnleft(15,30)
+        self.robot.forward(50,6)
+        self.robot.turnright(15,30)
         self.robot.backward(50,5.5)

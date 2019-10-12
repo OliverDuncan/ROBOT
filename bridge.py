@@ -12,8 +12,8 @@ class Bridge:
     
     def run(self):
         self.robot.forward(50,4.8)
-        self.robot.turnright(95,.5)
-        self.robot.forward(60,1)
-        self.robot.forward(100,1.5)
+        self.robot.turnleft(.5,150)
+        self.robot.forward(60,2)
+        self.robot.forward(100,2.5)
         self.robot.forward(50,1)
-        self.robot.attachMotorD(50,.8,-1)        
+        self.robot.attachMotorD(50,.8,-1)
