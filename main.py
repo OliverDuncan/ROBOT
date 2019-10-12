@@ -49,26 +49,13 @@ countED=0
 names=["crane","bridge","muchPointExploit","elevator"]
 missions=[Crane(hoid),Bridge(hoid),MuchPointExploit(hoid),Elevator(hoid)]
 
-while True:
+while countED<5:
     brick.display.text(names[countED])
-    if Button.CENTER in brick.buttons():
+    buttons= brick.buttons()
+    if Button.CENTER in buttons:
         missions[countED].run()
-        countED++
-    elif Button.UP in brick.buttons():
-        countED++
-    elif Button.DOWN in brick.buttons():
-        countED--
-
-
-# if countED=1
-#             crane.run()
-#             countED++
-#         elif countED=2
-#             bridge.run()
-#             countED++
-#         elif countED=3
-#             muchPointExploit.run()
-#             countED++
-#         elif countEd=4
-#             elevator.run()
-#             countED++
+        countED= countED+1
+    if Button.UP in buttons:
+         countED= countED+1
+    if Button.DOWN in buttons:
+         countED= countED-1
