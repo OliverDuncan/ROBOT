@@ -48,13 +48,20 @@ hoid= Robot(motorA,motorB,motorC,motorD,sensor1,sensor2,sensor3,sensor4)
 countED=0
 names=["crane","bridge","muchPointExploit","elevator"]
 missions=[Crane(hoid),Bridge(hoid),MuchPointExploit(hoid),Elevator(hoid)]
+def buttonrelease():
+    while any(brick.buttons()):
+        wait(10)
+
 
 while True:
     brick.display.text(names[countED])
     if Button.CENTER in brick.buttons():
+        buttonrelease()        
         missions[countED].run()
         countED= countED+1
     if Button.UP in brick.buttons():
-         countED= countED+1
+        buttonrelease()
+        countED= countED+1
     if Button.DOWN in brick.buttons():
-         countED= countED-1
+        buttonrelease()
+        countED= countED-1
