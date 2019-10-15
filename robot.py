@@ -129,3 +129,9 @@ class Robot:
             self.motorC.run(0)
         self.motorB.run(0)
         self.motorC.run(0)
+
+    def runUntilStucked(self, motor, speed, direction):
+        if direction == 1:
+            motor.run_until_stalled(speed, Stop.COAST, 100)
+        elif direction == -1:
+            motor.run_until_stalled(-speed, Stop.COAST, 100)
