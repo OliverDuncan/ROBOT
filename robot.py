@@ -135,3 +135,20 @@ class Robot:
             motor.run_until_stalled(speed, Stop.COAST, 100)
         elif direction == -1:
             motor.run_until_stalled(-speed, Stop.COAST, 100)
+ 
+    def findLine(self, speed, color, sensor):
+        self.reset()
+        self.motorB.run(speed)
+        self.motorC.run(speed)
+        print("findLine")
+        if sensor == 1:
+            while self.colorSensorleft.color() != color
+                wait(5)
+                print(self.colorSensorleft.color())
+        elif sensor == 2:
+            while self.colorSensorright.color() != color
+                wait(5)
+                print(self.colorSensorright.color())
+        self.motorB.run(0)
+        self.motorC.run(0)
+                
