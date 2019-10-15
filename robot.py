@@ -129,3 +129,20 @@ class Robot:
             self.motorC.run(0)
         self.motorB.run(0)
         self.motorC.run(0)
+ 
+    def findLine(self, speed, color, sensor):
+        self.reset()
+        self.motorB.run(speed)
+        self.motorC.run(speed)
+        print("findLine")
+        if sensor == 1:
+            while self.colorSensorleft.color() != color
+                wait(5)
+                print(self.colorSensorleft.color())
+        elif sensor == 2:
+            while self.colorSensorright.color() != color
+                wait(5)
+                print(self.colorSensorright.color())
+        self.motorB.run(0)
+        self.motorC.run(0)
+                
