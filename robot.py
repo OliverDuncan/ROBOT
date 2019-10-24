@@ -136,11 +136,11 @@ class Robot:
         self.motorC.run(speed)
         print("findLine")
         if sensor == 1:
-            while self.colorSensorleft.color() != color
+            while self.colorSensorleft.color() != color:
                 wait(5)
                 print(self.colorSensorleft.color())
         elif sensor == 2:
-            while self.colorSensorright.color() != color
+            while self.colorSensorright.color() != color:
                 wait(5)
                 print(self.colorSensorright.color())
         self.motorB.run(0)
