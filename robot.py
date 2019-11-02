@@ -57,11 +57,11 @@ class Robot:
         print("turn")
         while self.gyroSensor.angle() < angle:
             wait(5)
-            print(self.gyroSensor.angle()
+            print(self.gyroSensor.angle())
         if self.gyroSensor.angle() > angle:
             while self.gyroSensor.angle() > angle:
-                self.motorB.run(20*LAR_MOTOR)
-                self.motorA.run(-20*LAR_MOTOR)
+                self.motorB.run(20*self.LAR_MOTOR)
+                self.motorA.run(-20*self.LAR_MOTOR)
         self.motorB.run(0)
         self.motorC.run(0)
 
@@ -75,8 +75,8 @@ class Robot:
             print(self.gyroSensor.angle())
         if self.gyroSensor.angle() < angle:
             while self.gyroSensor.angle() < angle:
-                self.motorB.run(-20*LAR_MOTOR)
-                self.motorA.run(20*LAR_MOTOR)
+                self.motorB.run(-20*self.LAR_MOTOR)
+                self.motorA.run(20*self.LAR_MOTOR)
         self.motorB.run(0)
         self.motorC.run(0)
     
@@ -140,14 +140,14 @@ class Robot:
 
     def runUntilStucked(self, motor, speed, direction):
         if direction == 1:
-            motor.run_until_stalled(speed, Stop.COAST, 100)
+            motor.run_until_stalled(speed*self.LAR_MOTOR, Stop.COAST, 100)
         elif direction == -1:
-            motor.run_until_stalled(-speed, Stop.COAST, 100)
- 
+            motor.run_until_stalled(-speed*self.LAR_MOTOR, Stop.COAST, 100)
+
     def findLine(self, speed, color, sensor):
         self.reset()
-        self.motorB.run(speed)
-        self.motorC.run(speed)
+        self.motorB.run(speed*self.LAR_MOTOR)
+        self.motorC.run(speed*self.LAR_MOTOR)
         print("findLine")
         if sensor == 1:
             while self.colorSensorleft.color() != color:
@@ -159,23 +159,23 @@ class Robot:
                 print(self.colorSensorright.color())
         self.motorB.run(0)
         self.motorC.run(0)
-    def alignWall(self, speed, ):
-        self.reset()
-        self.motorB.run(-1*speed)
-        self.motorA.run(speed*-1)
-        print("alignWall")
-        while !self.motorA.stalled() || !self.motorB.stalled()
-            if !self.motorA.stalled() && !self.motorB.stalled()
-                wait(5)
-            elif self.motorA.stalled() && !self.motorB.stalled()
-                wait(5)
-                self.motorA.run(0)
-                self.motorB.run(-1*speed)
-            elif !self.motorA.stalled() && self.motorB.stalled()
-                wait(5)
-                self.motorA.run(-1*speed)
-                self.motorB.run(0)
-            elif self.motorA.stalled() && self.motorB.stalled()
-                self.motorA.run(0)
-                self.motorB.run(0)
-        self.reset()
+    # def alignWall(self, speed, ):
+    #     self.reset()
+    #     self.motorB.run(-1*speed)
+    #     self.motorA.run(speed*-1)
+    #     print("alignWall")
+    #     while !self.motorA.stalled() || !self.motorB.stalled():
+    #         if !self.motorA.stalled() && !self.motorB.stalled():
+    #             wait(5)
+    #         elif self.motorA.stalled() && !self.motorB.stalled():
+    #             wait(5)
+    #             self.motorA.run(0)
+    #             self.motorB.run(-1*speed)
+    #         elif !self.motorA.stalled() && self.motorB.stalled():
+    #             wait(5)
+    #             self.motorA.run(-1*speed)
+    #             self.motorB.run(0)
+    #         elif self.motorA.stalled() && self.motorB.stalled():
+    #             self.motorA.run(0)
+    #             self.motorB.run(0)
+    #     self.reset()

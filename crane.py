@@ -18,7 +18,7 @@ class Crane:
         self.robot.forward(35,.925)
         self.robot.attachMotorD(50,.25,-1)
         self.robot.runUntilStucked(self.robot.motorD, 100, -1)
-        self.robot.DogGearA(25,.50,1)
+        self.robot.DogGearA(5,.01,1)
         wait(1000)
         self.robot.backward(50,1)
         self.robot.turnright(20,90)
