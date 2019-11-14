@@ -159,23 +159,28 @@ class Robot:
                 print(self.colorSensorright.color())
         self.motorB.run(0)
         self.motorC.run(0)
-    # def alignWall(self, speed, ):
-    #     self.reset()
-    #     self.motorB.run(-1*speed)
-    #     self.motorA.run(speed*-1)
-    #     print("alignWall")
-    #     while !self.motorA.stalled() || !self.motorB.stalled():
-    #         if !self.motorA.stalled() && !self.motorB.stalled():
-    #             wait(5)
-    #         elif self.motorA.stalled() && !self.motorB.stalled():
-    #             wait(5)
-    #             self.motorA.run(0)
-    #             self.motorB.run(-1*speed)
-    #         elif !self.motorA.stalled() && self.motorB.stalled():
-    #             wait(5)
-    #             self.motorA.run(-1*speed)
-    #             self.motorB.run(0)
-    #         elif self.motorA.stalled() && self.motorB.stalled():
-    #             self.motorA.run(0)
-    #             self.motorB.run(0)
-    #     self.reset()
+    def alignWall(self, speed ):
+        speed = speed * self.LAR_MOTOR
+        self.reset()
+        self.motorB.run(-1*speed)
+        self.motorC.run(speed*-1)
+        print("alignWall")
+        while not self.motorB.stalled() or not self.motorC.stalled() or self.motorB.speed() > 0 or self.motorC.speed() > 0:
+            if not self.motorB.stalled() and not self.motorC.stalled():
+                wait(5)
+                print("NoneStalled")
+            elif self.motorB.stalled() and not self.motorC.stalled():
+                wait(5)
+                self.motorB.run(0)
+                self.motorC.run(-1*speed)
+                print("B_Stalled")
+            elif not self.motorB.stalled() and self.motorC.stalled():
+                wait(5)
+                self.motorB.run(-1*speed)
+                self.motorC.run(0)
+                print("C_Stalled")
+            elif self.motorB.stalled() and self.motorC.stalled():
+                self.motorB.run(0)
+                self.motorC.run(0)
+                print("AllStalled")
+        self.reset()

@@ -13,6 +13,7 @@ from crane import Crane
 from muchPointExploit import MuchPointExploit
 from elevator import Elevator
 from wheelchairlady import WheelchairLady
+from parkish import Parkish
 
 # Write your program here 
 brick.sound.beep()
@@ -44,11 +45,11 @@ hoid= Robot(motorA,motorB,motorC,motorD,sensor1,sensor2,sensor3,sensor4)
 
 # elevator=Elevator(hoid)
 # elevator.run()
-
+# hoid.alignWall(50)
 
 countED=0
-names=["crane","bridge","muchPointExploit","elevator","wheelchairlady"]
-missions=[Crane(hoid),Bridge(hoid),MuchPointExploit(hoid),Elevator(hoid),WheelchairLady(hoid)]
+names=["crane","bridge","muchPointExploit","elevator","wheelchairlady","parkish"]
+missions=[Crane(hoid),Bridge(hoid),MuchPointExploit(hoid),Elevator(hoid),WheelchairLady(hoid),Parkish(hoid)]
 def buttonrelease():
     while any(brick.buttons()):
         wait(10)
