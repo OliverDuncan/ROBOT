@@ -61,7 +61,7 @@ class Robot:
         if self.gyroSensor.angle() > angle:
             while self.gyroSensor.angle() > angle:
                 self.motorB.run(20*self.LAR_MOTOR)
-                self.motorA.run(-20*self.LAR_MOTOR)
+                self.motorC.run(-20*self.LAR_MOTOR)
         self.motorB.run(0)
         self.motorC.run(0)
 
@@ -76,7 +76,7 @@ class Robot:
         if self.gyroSensor.angle() < angle:
             while self.gyroSensor.angle() < angle:
                 self.motorB.run(-20*self.LAR_MOTOR)
-                self.motorA.run(20*self.LAR_MOTOR)
+                self.motorC.run(20*self.LAR_MOTOR)
         self.motorB.run(0)
         self.motorC.run(0)
     
