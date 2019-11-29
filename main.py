@@ -13,6 +13,7 @@ from crane import Crane
 from muchPointExploit import MuchPointExploit
 from elevator import Elevator
 from wheelchairlady import WheelchairLady
+from AllBatsAreDrones import AllBatsAreDrones
 
 # Write your program here 
 brick.sound.beep()

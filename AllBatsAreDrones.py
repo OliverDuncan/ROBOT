@@ -11,10 +11,9 @@ class AllBatsAreDrones:
        self.robot=robot
 
     def run(self):
-        self.attachMotorD.stop(stop_coast=Stop.HOLD)
+        self.motorD.stop(stop_coast=Stop.HOLD)
         self.forward(50,2)
         self.turnright(50,88)
         self.forward(50,1.5)
         self.turnright(50,88)
-        self.backward()
-        self
+       
