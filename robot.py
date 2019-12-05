@@ -56,14 +56,17 @@ class Robot:
         self.motorC.run(speed*self.LAR_MOTOR)
         print("turn")
         while self.gyroSensor.angle() < angle:
-            wait(5)
-            print(self.gyroSensor.angle())
-        if self.gyroSensor.angle() > angle:
-            while self.gyroSensor.angle() > angle:
-                self.motorB.run(20*self.LAR_MOTOR)
-                self.motorA.run(-20*self.LAR_MOTOR)
+            wait(1)
         self.motorB.run(0)
         self.motorC.run(0)
+        print("step 2")
+        while self.gyroSensor.angle() > angle + 2:
+                # print(self.gyroSensor.angle())
+                self.motorB.run(10*self.LAR_MOTOR)
+                self.motorC.run(-10*self.LAR_MOTOR)
+        self.motorB.run(0)
+        self.motorC.run(0)
+        print(self.gyroSensor.angle())
 
     def turnleft(self,speed,angle):
         self.reset()
@@ -76,7 +79,7 @@ class Robot:
         if self.gyroSensor.angle() < angle:
             while self.gyroSensor.angle() < angle:
                 self.motorB.run(-20*self.LAR_MOTOR)
-                self.motorA.run(20*self.LAR_MOTOR)
+                self.motorC.run(20*self.LAR_MOTOR)
         self.motorB.run(0)
         self.motorC.run(0)
     
@@ -159,6 +162,31 @@ class Robot:
                 print(self.colorSensorright.color())
         self.motorB.run(0)
         self.motorC.run(0)
+    # def alignWall(self, speed ):
+    #     speed = speed * self.LAR_MOTOR
+    #     self.reset()
+    #     self.motorB.run(-1*speed)
+    #     self.motorC.run(speed*-1)
+    #     print("alignWall")
+    #     while not self.motorB.stalled() or not self.motorC.stalled() or self.motorB.speed() > 0 or self.motorC.speed() > 0:
+    #         if not self.motorB.stalled() and not self.motorC.stalled():
+    #             wait(5)
+    #             print("NoneStalled")
+    #         elif self.motorB.stalled() and not self.motorC.stalled():
+    #             wait(5)
+    #             self.motorB.run(0)
+    #             self.motorC.run(-1*speed)
+    #             print("B_Stalled")
+    #         elif not self.motorB.stalled() and self.motorC.stalled():
+    #             wait(5)
+    #             self.motorB.run(-1*speed)
+    #             self.motorC.run(0)
+    #             print("C_Stalled")
+    #         elif self.motorB.stalled() and self.motorC.stalled():
+    #             self.motorB.run(0)
+    #             self.motorC.run(0)
+    #             print("AllStalled")
+    #     self.reset()
     # def alignWall(self, speed,):
     #     self.reset()
     #     self.motorB.run(-1*speed)
