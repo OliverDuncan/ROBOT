@@ -12,13 +12,10 @@ class Crane:
        self.robot=robot
 
     def run(self):
-        self.robot.attachMotorD(50,.75,1)
         self.robot.shallowTurn(30,40,20,1)
         self.robot.shallowTurn(40,30,-20,-1)
         self.robot.forward(35,.910)
-        self.robot.attachMotorD(50,.25,-1)
-        self.robot.runUntilStucked(self.robot.motorD, 100, -1)
-        self.robot.DogGearA(5,.01,1)
+        self.motorBySeconds(self.motorA, )
         wait(1000)
         self.robot.backward(50,1)
         self.robot.turnright(20,90)

@@ -22,6 +22,8 @@ class Robot:
     MED_MOTOR=14.4
     DEG_TO_ROT=360
 
+
+
     def reset(self):
         self.motorA.reset_angle(0)
         self.motorB.reset_angle(0)
@@ -204,12 +206,20 @@ class Robot:
     #             self.motorA.run(0)
     #             self.motorB.run(0)
     #     self.reset()
-    def alignWallMark2(self,speed)
+    def alignWallMark2(self,speed):
         self.reset()
         self.motorB.run(speed*-1*LAR_MOTOR)
         self.motorA.run(speed*-1*LAR_MOTOR)
         print("alignWall")
-        while motorB.speed() > 20 and motorC.speed() > 20
+        while motorB.speed() > 20 and motorC.speed() > 20:
             wait(5)
         self.motorB.run(0)
         self.motorC.run(0)
+
+    # def motorBySeconds(motor, seconds, speed, direction):
+    #     self.reset()
+    #     if motor == self.motorA:
+    #         speed = speed*self.MED_MOTOR
+    #     else 
+    #         speed = speed*self.LAR_MOTOR 
+    #     motor.run_time(speed, seconds*1000, Stop.BRAKE)
