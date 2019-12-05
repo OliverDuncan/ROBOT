@@ -58,14 +58,17 @@ class Robot:
         self.motorC.run(speed*self.LAR_MOTOR)
         print("turn")
         while self.gyroSensor.angle() < angle:
-            wait(5)
-            print(self.gyroSensor.angle())
-        if self.gyroSensor.angle() > angle:
-            while self.gyroSensor.angle() > angle:
-                self.motorB.run(20*self.LAR_MOTOR)
-                self.motorC.run(-20*self.LAR_MOTOR)
+            wait(1)
         self.motorB.run(0)
         self.motorC.run(0)
+        print("step 2")
+        while self.gyroSensor.angle() > angle + 2:
+                # print(self.gyroSensor.angle())
+                self.motorB.run(10*self.LAR_MOTOR)
+                self.motorC.run(-10*self.LAR_MOTOR)
+        self.motorB.run(0)
+        self.motorC.run(0)
+        print(self.gyroSensor.angle())
 
     def turnleft(self,speed,angle):
         self.reset()

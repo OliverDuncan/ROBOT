@@ -11,8 +11,15 @@ class Elevator:
        self.robot=robot
     
     def run(self):
-        self.robot.forward(50,5.5)
-        self.robot.turnleft(15,30)
-        self.robot.forward(50,6)
-        self.robot.turnright(15,30)
-        self.robot.backward(50,5.5)
+       self.robot.forward(50,.03)
+       self.robot.turnright(20,85)
+       wait(500)
+       self.robot.forward(40,5.45)
+       self.robot.DogGearA(20,.2,-1)
+       self.robot.forward(50,1.5)
+       self.robot.DogGearA(20,.2,-1)
+       self.roboy.turnright(50,20)
+       self.robot.backward(50,7.45)
+
+    
+    
