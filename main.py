@@ -63,7 +63,8 @@ while True:
     if Button.CENTER in brick.buttons():
         buttonrelease()        
         missions[countED].run()
-        countED= countED+1
+        if (countED != 6):
+            countED= countED+1
     if Button.UP in brick.buttons():
         buttonrelease()
         countED= countED+1
