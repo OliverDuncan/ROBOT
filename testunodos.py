@@ -6,14 +6,8 @@ from pybricks.parameters import (Port, Stop, Direction, Button, Color,
 from pybricks.tools import print, wait, StopWatch
 from pybricks.robotics import DriveBase
 
-class WheelchairLady:
+class Testunodos:
     def  __init__(self, robot):
        self.robot=robot
     def run(self):
-        self.robot.forward(50,4)
-        self.robot.DogGearA(20,0.3,-1)
-        self.robot.forward(40,0.1)
-        self.robot.DogGearA(20,0.3,1)
-        self.robot.forward(50,2)
-
-    
+        self.robot.DogGearA(30,1,-1)
