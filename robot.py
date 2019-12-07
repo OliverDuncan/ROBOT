@@ -17,14 +17,17 @@ class Robot:
         self.colorSensorleft=sensor2
         self.gyroSensor=sensor3
         self.touchSensor=sensor4
-
+    # these are constants that are used later in various functions
     LAR_MOTOR=10
     MED_MOTOR=14.4
     DEG_TO_ROT=360
 
-
+    def getMotorD(self):
+        return self.motorD
+    
 
     def reset(self):
+        # this just resets all of the motor angle sensors and the gyro sensor
         self.motorA.reset_angle(0)
         self.motorB.reset_angle(0)
         self.motorC.reset_angle(0)
@@ -33,11 +36,16 @@ class Robot:
 
     def forward(self,speed,distance):
         self.reset()
-        print("test")
+        # print("test")
+        # this turns the motors on and sets them to the speed specified and it multiplies it by the constant LAR_MOTOR 
+        # to transition the d/s into a scale of 1 to 100
         self.motorB.run(speed*self.LAR_MOTOR)
         self.motorC.run(speed*self.LAR_MOTOR)
+        # motors will continue to run while the while is repeating
         while self.motorC.angle() < distance*self.DEG_TO_ROT:
             wait(10)
+            # as soon as these conditions are not met it moves and
+        # and thusly stops
         self.motorB.run(0)
         self.motorC.run(0)
 
@@ -46,8 +54,8 @@ class Robot:
         self.motorB.run(speed*-1*self.LAR_MOTOR)
         self.motorC.run(speed*-1*self.LAR_MOTOR)
         while self.motorC.angle() > -distance*self.DEG_TO_ROT:
-            print(self.motorC.angle())
-            print("\n")
+            # print(self.motorC.angle())
+            # print("\n")
             wait(10)
         self.motorB.run(0)
         self.motorC.run(0)
@@ -56,32 +64,32 @@ class Robot:
         self.reset()
         self.motorB.run(speed*-1*self.LAR_MOTOR)
         self.motorC.run(speed*self.LAR_MOTOR)
-        print("turn")
+        # print("turn")
         while self.gyroSensor.angle() < angle:
             wait(1)
         self.motorB.run(0)
         self.motorC.run(0)
-        print("step 2")
+        # print("step 2")
         while self.gyroSensor.angle() > angle + 2:
                 # print(self.gyroSensor.angle())
                 self.motorB.run(10*self.LAR_MOTOR)
                 self.motorC.run(-10*self.LAR_MOTOR)
         self.motorB.run(0)
         self.motorC.run(0)
-        print(self.gyroSensor.angle())
+        # print(self.gyroSensor.angle())
 
     def turnleft(self,speed,angle):
         self.reset()
         self.motorB.run(speed*self.LAR_MOTOR)
         self.motorC.run(speed*-1*self.LAR_MOTOR)
-        print("turn")
+        # print("turn")
         while self.gyroSensor.angle() > angle*-1:
             wait(5)
             print(self.gyroSensor.angle())
-        if self.gyroSensor.angle() < angle:
-            while self.gyroSensor.angle() < angle:
-                self.motorB.run(-20*self.LAR_MOTOR)
-                self.motorC.run(20*self.LAR_MOTOR)
+        
+        while self.gyroSensor.angle() < angle*-1-2:
+            self.motorB.run(-20*self.LAR_MOTOR)
+            self.motorC.run(20*self.LAR_MOTOR)
         self.motorB.run(0)
         self.motorC.run(0)
     
@@ -89,7 +97,7 @@ class Robot:
         self.reset()
         if direction == 1:
             self.motorA.run(speed*self.MED_MOTOR)
-            print("clDogRotate")
+            # print("clDogRotate")
             while self.motorA.angle() < distance*self.DEG_TO_ROT:
                 wait(5)
                 print(self.motorA.angle())
@@ -97,47 +105,47 @@ class Robot:
 
         elif direction == -1:
             self.motorA.run(speed*direction*self.MED_MOTOR)
-            print("cnclDogRotate")
-            print(distance*direction*self.DEG_TO_ROT)
+            # print("cnclDogRotate")
+            # print(distance*direction*self.DEG_TO_ROT)
             while self.motorA.angle() > distance*direction*self.DEG_TO_ROT:
                 wait(5)
-                print(self.motorA.angle())
+                # print(self.motorA.angle())
             self.motorA.run(0)
 
     def attachMotorD(self,speed,distance,direction):
         self.reset()
         if direction == 1:
             self.motorD.run(speed*self.LAR_MOTOR)
-            print("forMotorDRotate")
-            print(self.motorD.angle())
+            # print("forMotorDRotate")
+            # print(self.motorD.angle())
             while self.motorD.angle() < distance*self.DEG_TO_ROT:
                 wait(5)
-                print(self.motorD.angle())
+                # print(self.motorD.angle())
             self.motorD.run(0)
 
         elif direction == -1:
             self.motorD.run(speed*direction*self.LAR_MOTOR)
-            print("aftMotorDRotate")
+            # print("aftMotorDRotate")
             while self.motorD.angle() > distance*direction*self.DEG_TO_ROT:
                 wait(5)
-                print(self.motorD.angle())
+                # print(self.motorD.angle())
             self.motorD.run(0)
     
     def shallowTurn(self,rightspeed,leftspeed,angle,direction):
         self.reset()
         self.motorB.run(rightspeed*self.LAR_MOTOR)
         self.motorC.run(leftspeed*self.LAR_MOTOR)
-        print("turn")
+        # print("turn")
         if direction == -1:
             while self.gyroSensor.angle() > angle: 
                 wait(5)
-                print(self.gyroSensor.angle())
+                # print(self.gyroSensor.angle())
             self.motorB.run(0)
             self.motorC.run(0)
         elif direction == 1:
             while self.gyroSensor.angle() < angle:
                 wait(5)
-                print(self.gyroSensor.angle())
+                # print(self.gyroSensor.angle())
             self.motorB.run(0)
             self.motorC.run(0)
         self.motorB.run(0)
@@ -153,7 +161,7 @@ class Robot:
         self.reset()
         self.motorB.run(speed*self.LAR_MOTOR)
         self.motorC.run(speed*self.LAR_MOTOR)
-        print("findLine")
+        # print("findLine")
         if sensor == 1:
             while self.colorSensorleft.color() != color:
                 wait(5)
@@ -161,7 +169,7 @@ class Robot:
         elif sensor == 2:
             while self.colorSensorright.color() != color:
                 wait(5)
-                print(self.colorSensorright.color())
+                # print(self.colorSensorright.color())
         self.motorB.run(0)
         self.motorC.run(0)
     # def alignWall(self, speed ):
@@ -213,7 +221,7 @@ class Robot:
         self.reset()
         self.motorB.run(speed*-1*LAR_MOTOR)
         self.motorA.run(speed*-1*LAR_MOTOR)
-        print("alignWall")
+        # print("alignWall")
         while motorB.speed() > 20 and motorC.speed() > 20:
             wait(5)
         self.motorB.run(0)
@@ -226,3 +234,17 @@ class Robot:
     #     else 
     #         speed = speed*self.LAR_MOTOR 
     #     motor.run_time(speed, seconds*1000, Stop.BRAKE)
+
+    def forwardMark2TheBetterOne(self,speed,distance,startSpeed):
+        self.reset()
+        # print("test")
+        self.motorB.run(startSpeed*self.LAR_MOTOR)
+        self.motorC.run(startSpeed*self.LAR_MOTOR)
+        while self.motorC.angle() < distance*self.DEG_TO_ROT/4 and self.motorC.angle() < 1*self.DEG_TO_ROT:
+            wait(10)
+        self.motorB.run(speed*self.LAR_MOTOR)
+        self.motorC.run(speed*self.LAR_MOTOR)
+        while self.motorC.angle() < distance*self.DEG_TO_ROT:
+            wait(10)
+        self.motorB.run(0)
+        self.motorC.run(0)

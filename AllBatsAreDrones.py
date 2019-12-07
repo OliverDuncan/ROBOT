@@ -11,9 +11,15 @@ class AllBatsAreDrones:
        self.robot=robot
 
     def run(self):
-        self.motorD.stop(stop_coast=Stop.HOLD)
-        self.forward(50,2)
-        self.turnright(50,88)
-        self.forward(50,1.5)
-        self.turnright(50,88)
+        # Hello there I will be your guide to this program, my name is phil
+        # This gets access to motorD from the robot class
+        motor= self.robot.getMotorD()
+        # This holds the attachment motor in place
+        motor.stop(Stop.HOLD)
+        # This is just the driving to the desired location
+        self.robot.forwardMark2TheBetterOne(50,2,20)
+        self.robot.turnright(20,90)
+        self.robot.forwardMark2TheBetterOne(50,1.5,20)
+        self.robot.turnright(20,90)
+        # Thank you for coming on this wonderful tourventure
        
