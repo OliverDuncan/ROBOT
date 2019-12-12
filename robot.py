@@ -43,7 +43,7 @@ class Robot:
         self.motorC.run(speed*self.LAR_MOTOR)
         # motors will continue to run while the while is repeating
         while self.motorC.angle() < distance*self.DEG_TO_ROT:
-            wait(10)
+            wait(5)
             # as soon as these conditions are not met it moves and
         # and thusly stops
         self.motorB.run(0)
@@ -56,7 +56,7 @@ class Robot:
         while self.motorC.angle() > -distance*self.DEG_TO_ROT:
             # print(self.motorC.angle())
             # print("\n")
-            wait(10)
+            wait(5)
         self.motorB.run(0)
         self.motorC.run(0)
 
@@ -84,12 +84,12 @@ class Robot:
         self.motorC.run(speed*-1*self.LAR_MOTOR)
         # print("turn")
         while self.gyroSensor.angle() > angle*-1:
-            wait(5)
-            print(self.gyroSensor.angle())
+            wait(1)
+            # print(self.gyroSensor.angle())
         
-        while self.gyroSensor.angle() < angle*-1-2:
-            self.motorB.run(-20*self.LAR_MOTOR)
-            self.motorC.run(20*self.LAR_MOTOR)
+        while self.gyroSensor.angle() < ((angle*-1)-2):
+            self.motorB.run(-10*self.LAR_MOTOR)
+            self.motorC.run(10*self.LAR_MOTOR)
         self.motorB.run(0)
         self.motorC.run(0)
     
