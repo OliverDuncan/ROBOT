@@ -12,11 +12,21 @@ class Crane:
        self.robot=robot
 
     def run(self):
+
+        motorA = self.robot.getMotorA()
+
         self.robot.shallowTurn(30,40,20,1)
         self.robot.shallowTurn(40,30,-20,-1)
-        self.robot.forward(35,.910)
-        # self.motorBySeconds(self.motorA, )
+        self.robot.forward(25,1.10)
+        wait(2000)
+        motorA.run_time(1440,2000,Stop.HOLD)
+        # # self.motorBySeconds(self.motorA, )
+        # motorA.stop(Stop.HOLD)
         wait(1000)
-        self.robot.backward(50,1)
+        motorA.stop(Stop.COAST)
+        # self.robot.backward(50,1)
+        self.robot.forwardMark2TheBetterOne(-50,1,20)
         self.robot.turnright(20,90)
-        self.robot.backward(50,3)
+        # self.robot.backward(50,3)
+        self.robot.forwardMark2TheBetterOne(-50,3,20)
+        self.robot.turnleft(20,90)

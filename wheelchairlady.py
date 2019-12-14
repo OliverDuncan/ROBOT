@@ -16,7 +16,8 @@ class WheelchairLady:
         # self.robot.forward(40,0.05)
         # self.robot.DogGearA(20,0.3,1)
         # self.robot.forward(50,2.5)
-        # self.robot.turnright(20,30)
+        # self.robot.turnright(20,30)html/
+        
 
         self.robot.forward(50,4)
         self.robot.DogGearA(20,0.3,-1)

@@ -24,6 +24,9 @@ class Robot:
 
     def getMotorD(self):
         return self.motorD
+
+    def getMotorA(self):
+        return self.motorA
     
 
     def reset(self):
