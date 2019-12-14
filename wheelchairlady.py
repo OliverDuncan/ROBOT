@@ -10,11 +10,20 @@ class WheelchairLady:
     def  __init__(self, robot):
        self.robot=robot
     def run(self):
-        self.robot.DogGearA(20,0.25,1)
-        self.robot.forward(50,3)
-        self.robot.backward(50,.5)
-        self.robot.DogGearA(20,0.25,-1)
-        self.robot.forward(50,2)
-        self.robot.attachMotorD(50,0.25,1)
-        self.robot.backward(60,5)
+        # self.robot.turnleft(10,25)
+        # self.robot.forward(50,4)
+        # self.robot.DogGearA(20,0.3,-1)
+        # self.robot.forward(40,0.05)
+        # self.robot.DogGearA(20,0.3,1)
+        # self.robot.forward(50,2.5)
+        # self.robot.turnright(20,30)
+
+        self.robot.forward(50,4)
+        self.robot.DogGearA(20,0.3,-1)
+        self.robot.forward(40,0.1)
+        self.robot.DogGearA(20,0.3,1)
+        self.robot.forward(50,0.25)
+        self.robot.turnleft(20,45)
+        self.robot.forward(50,1)
+
     
