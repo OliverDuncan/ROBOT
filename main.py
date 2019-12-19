@@ -51,8 +51,8 @@ hoid= Robot(motorA,motorB,motorC,motorD,sensor1,sensor2,sensor3,sensor4)
 
 countED=0
 
-names=["crane","bridge","muchPointExploit","elevator","wheelchairlady","parkish","AllBatsAreDrones","Testunodos"]
-missions=[Crane(hoid),Bridge(hoid),MuchPointExploit(hoid),Elevator(hoid),WheelchairLady(hoid),Parkish(hoid),AllBatsAreDrones(hoid),Testunodos(hoid),]
+names=["crane","muchPointExploit","parkish","wheelchairlady","AllBatsAreDrones"]
+missions=[Crane(hoid),MuchPointExploit(hoid),Parkish(hoid),WheelchairLady(hoid),AllBatsAreDrones(hoid)]
 
 def buttonrelease():
     while any(brick.buttons()):4
