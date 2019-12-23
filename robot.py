@@ -24,6 +24,9 @@ class Robot:
 
     def getMotorD(self):
         return self.motorD
+
+    def getMotorA(self):
+        return self.motorA
     
 
     def reset(self):
@@ -266,5 +269,26 @@ class Robot:
         self.motorC.run(speed*self.LAR_MOTOR)
         while self.motorC.angle() < distance*self.DEG_TO_ROT:
             wait(10)
+        self.motorB.run(0)
+        self.motorC.run(0)
+
+    def turnRightSloppy(self,speed,angle):
+        self.reset()
+        self.motorB.run(speed*-1*self.LAR_MOTOR)
+        self.motorC.run(speed*self.LAR_MOTOR)
+        # print("turn")
+        while self.gyroSensor.angle() < angle:
+            wait(1)
+        self.motorB.run(0)
+        self.motorC.run(0)
+        # print(self.gyroSensor.angle())
+
+    def turnLeftSloppy(self,speed,angle):
+        self.reset()
+        self.motorB.run(speed*self.LAR_MOTOR)
+        self.motorC.run(speed*-1*self.LAR_MOTOR)
+        # print("turn")
+        while self.gyroSensor.angle() > angle*-1:
+            wait(1)
         self.motorB.run(0)
         self.motorC.run(0)
