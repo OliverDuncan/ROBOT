@@ -15,6 +15,7 @@ class Crane:
         self.robot.shallowTurn(30,40,20,1)
         self.robot.shallowTurn(40,30,-20,-1)
         self.robot.forward(35,.910)
+        self.robot.dogGearA(30, .25, 1)
         # self.motorBySeconds(self.motorA, )
         wait(1000)
         self.robot.backward(50,1)

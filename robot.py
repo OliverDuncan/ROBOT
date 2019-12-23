@@ -112,6 +112,26 @@ class Robot:
                 # print(self.motorA.angle())
             self.motorA.run(0)
 
+    def DogGearHold(self,speed,distance,direction):
+        self.reset()
+        if direction == 1:
+            self.motorA.run(speed*self.MED_MOTOR)
+            # print("clDogRotate")
+            while self.motorA.angle() < distance*self.DEG_TO_ROT:
+                wait(5)
+                print(self.motorA.angle())
+            self.motorA.stop(Stop.HOLD)
+
+        elif direction == -1:
+            self.motorA.run(speed*direction*self.MED_MOTOR)
+            # print("cnclDogRotate")
+            # print(distance*direction*self.DEG_TO_ROT)
+            while self.motorA.angle() > distance*direction*self.DEG_TO_ROT:
+                wait(5)
+                # print(self.motorA.angle())
+            self.motorA.stop(Stop.HOLD)
+
+
     def attachMotorD(self,speed,distance,direction):
         self.reset()
         if direction == 1:
