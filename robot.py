@@ -294,3 +294,13 @@ class Robot:
         self.motorB.run(0)
         self.motorC.run(0)
 
+    def driveStraight(self,speed,distance,angle):
+        self.reset()
+        drivebase = DriveBase(self.motorC, self.motorB, 62.4, 101)
+        while self.motorC.angle() < distance*self.DEG_TO_ROT:
+            error = self.gyroSensor.angle()- angle
+            error= error * -0.7
+            drivebase.drive(speed, error)
+        self.motorB.run(0)
+        self.motorC.run(0)
+               
