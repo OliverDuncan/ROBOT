@@ -16,6 +16,7 @@ from wheelchairlady import WheelchairLady
 from AllBatsAreDrones import AllBatsAreDrones
 from parkish import Parkish
 from testunodos import Testunodos
+from TreesDeath import TreesDeath
 
 # Write your program here 
 brick.sound.beep()
@@ -51,8 +52,8 @@ hoid= Robot(motorA,motorB,motorC,motorD,sensor1,sensor2,sensor3,sensor4)
 
 countED=0
 
-names=["crane","muchPointExploit","parkish","wheelchairlady","AllBatsAreDrones"]
-missions=[Crane(hoid),MuchPointExploit(hoid),Parkish(hoid),WheelchairLady(hoid),AllBatsAreDrones(hoid)]
+names=["crane","muchPointExploit","parkish","wheelchairlady","AllBatsAreDrones","TreesDeath"]
+missions=[Crane(hoid),MuchPointExploit(hoid),Parkish(hoid),WheelchairLady(hoid),AllBatsAreDrones(hoid),TreesDeath(hoid)]
 
 def buttonrelease():
     while any(brick.buttons()):4

@@ -11,8 +11,4 @@ class MuchPointExploit:
        self.robot=robot
     
     def run(self):
-        self.robot.forward(50,2)
-        self.robot.backward(100,0.8)
-        self.robot.turnright(25,90)
-        self.robot.backward(100,1.1)
-        self.robot.turnleft(50,90)
+        self.robot.attachMotorD(100,10,1)

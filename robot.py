@@ -17,6 +17,7 @@ class Robot:
         self.colorSensorleft=sensor2
         self.gyroSensor=sensor3
         self.touchSensor=sensor4
+      
     # these are constants that are used later in various functions
     LAR_MOTOR=10
     MED_MOTOR=14.4
@@ -133,6 +134,26 @@ class Robot:
                 wait(5)
                 # print(self.motorD.angle())
             self.motorD.run(0)
+
+    def attachMotorDHold(self,speed,distance,direction):
+        self.reset()
+        if direction == 1:
+            self.motorD.run(speed*self.LAR_MOTOR)
+            # print("forMotorDRotate")
+            # print(self.motorD.angle())
+            while self.motorD.angle() < distance*self.DEG_TO_ROT:
+                wait(5)
+                # print(self.motorD.angle())
+            self.motorD.stop(Stop.HOLD)
+
+        elif direction == -1:
+            self.motorD.run(speed*direction*self.LAR_MOTOR)
+            # print("aftMotorDRotate")
+            while self.motorD.angle() > distance*direction*self.DEG_TO_ROT:
+                wait(5)
+                # print(self.motorD.angle())
+            self.motorD.stop(Stop.HOLD)
+
     
     def shallowTurn(self,rightspeed,leftspeed,angle,direction):
         self.reset()
@@ -272,3 +293,4 @@ class Robot:
             wait(1)
         self.motorB.run(0)
         self.motorC.run(0)
+
