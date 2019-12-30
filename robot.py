@@ -36,6 +36,8 @@ class Robot:
         self.motorB.reset_angle(0)
         self.motorC.reset_angle(0)
         self.motorD.reset_angle(0)
+    
+    def resetGyro(self):
         self.gyroSensor.reset_angle(0)
 
     def forward(self,speed,distance):
@@ -74,10 +76,10 @@ class Robot:
         self.motorB.run(0)
         self.motorC.run(0)
         # print("step 2")
-        while self.gyroSensor.angle() > angle + 2:
+        while self.gyroSensor.angle() > angle + 1:
                 # print(self.gyroSensor.angle())
-                self.motorB.run(10*self.LAR_MOTOR)
-                self.motorC.run(-10*self.LAR_MOTOR)
+                self.motorB.run(speed/2*self.LAR_MOTOR)
+                self.motorC.run(-speed/2*self.LAR_MOTOR)
         self.motorB.run(0)
         self.motorC.run(0)
         # print(self.gyroSensor.angle())
@@ -91,9 +93,9 @@ class Robot:
             wait(1)
             # print(self.gyroSensor.angle())
         
-        while self.gyroSensor.angle() < ((angle*-1)-2):
-            self.motorB.run(-10*self.LAR_MOTOR)
-            self.motorC.run(10*self.LAR_MOTOR)
+        while self.gyroSensor.angle() < ((angle*-1)-1):
+            self.motorB.run(-speed/2*self.LAR_MOTOR)
+            self.motorC.run(speed/2*self.LAR_MOTOR)
         self.motorB.run(0)
         self.motorC.run(0)
     
@@ -266,7 +268,7 @@ class Robot:
         self.motorB.run(speed*-1*LAR_MOTOR)
         self.motorA.run(speed*-1*LAR_MOTOR)
         # print("alignWall")
-        while motorB.speed() > 20 and motorC.speed() > 20:
+        while motorB.speed() > 20 or motorC.speed() > 20:
             wait(5)
         self.motorB.run(0)
         self.motorC.run(0)
@@ -319,8 +321,10 @@ class Robot:
         drivebase = DriveBase(self.motorC, self.motorB, 62.4, 101)
         while self.motorC.angle() < distance*self.DEG_TO_ROT:
             error = self.gyroSensor.angle()- angle
-            error= error * -0.7
+            error= error * -1
             drivebase.drive(speed, error)
         self.motorB.run(0)
         self.motorC.run(0)
                
+    def readGyro(self):
+        return self.gyroSensor.angle()
