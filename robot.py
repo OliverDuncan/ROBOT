@@ -40,22 +40,18 @@ class Robot:
     def resetGyro(self):
         self.gyroSensor.reset_angle(0)
 
-    def forward(self,speed,distance):
-        self.reset()
-        # print("test")
-        # this turns the motors on and sets them to the speed specified and it multiplies it by the constant LAR_MOTOR 
-        # to transition the d/s into a scale of 1 to 100
-        self.motorB.run(speed*self.LAR_MOTOR)
-        self.motorC.run(speed*self.LAR_MOTOR)
-        # motors will continue to run while the while is repeating
+    def forward(self,speed,distance):# This is the function to move the robot forward.
+        self.reset()# This resets the angles on all of the motors and the gyro sensor.
+        # print("test")# This prints test on the computer for debugging
+        self.motorB.run(speed*self.LAR_MOTOR)# This turns the motors on and sets them to the speed specified by the user and it multiplies it by the constant LAR_MOTOR 
+        self.motorC.run(speed*self.LAR_MOTOR)# to transition the degrees per second into a scale of 1 to 100, 100 being as fast as possible for the large motor which is 990 d/s
+        # The motors will continue to run until they are told to stop, so until the motor angle is greater than the distance it will
         while self.motorC.angle() < distance*self.DEG_TO_ROT:
             wait(5)
-            # as soon as these conditions are not met it moves and
-        # and thusly stops
-        self.motorB.run(0)
+        self.motorB.run(0) # Then it stops
         self.motorC.run(0)
 
-    def backward(self,speed,distance):
+    def backward(self,speed,distance): # This does the same as the forward but in reverse.
         self.reset()
         self.motorB.run(speed*-1*self.LAR_MOTOR)
         self.motorC.run(speed*-1*self.LAR_MOTOR)
@@ -66,22 +62,22 @@ class Robot:
         self.motorB.run(0)
         self.motorC.run(0)
 
-    def turnright(self,speed,angle):
-        self.reset()
-        self.motorB.run(speed*-1*self.LAR_MOTOR)
-        self.motorC.run(speed*self.LAR_MOTOR)
+    def turnright(self,speed,angle): # This function turns the robot to the right.
+        self.reset() # Again it resets first.
+        self.motorB.run(speed*-1*self.LAR_MOTOR) # Then it makes one motor rotate one direction
+        self.motorC.run(speed*self.LAR_MOTOR) # and the other motor rotates the other direction causing the robot to turn.
         # print("turn")
-        while self.gyroSensor.angle() < angle:
+        while self.gyroSensor.angle() < angle:# Then same as the forward/backward it loops until the gyrosensor is greater than the angle.
             wait(1)
-        self.motorB.run(0)
+        self.motorB.run(0) # Then stops
         self.motorC.run(0)
         # print("step 2")
-        while self.gyroSensor.angle() > angle + 1:
+        while self.gyroSensor.angle() > angle + 1: # Then differing from forward/backward it corrects itself, because the gyro overshoots.
                 # print(self.gyroSensor.angle())
                 self.motorB.run(speed/2*self.LAR_MOTOR)
                 self.motorC.run(-speed/2*self.LAR_MOTOR)
         self.motorB.run(0)
-        self.motorC.run(0)
+        self.motorC.run(0) # Then it stops for the last time
         # print(self.gyroSensor.angle())
 
     def turnleft(self,speed,angle):
@@ -321,7 +317,7 @@ class Robot:
         drivebase = DriveBase(self.motorC, self.motorB, 62.4, 101)
         while self.motorC.angle() < distance*self.DEG_TO_ROT:
             error = self.gyroSensor.angle()- angle
-            error= error * -1
+            error= error * -.5
             drivebase.drive(speed, error)
         self.motorB.run(0)
         self.motorC.run(0)
