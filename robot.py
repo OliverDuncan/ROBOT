@@ -63,7 +63,8 @@ class Robot:
         self.motorB.run(0)
         self.motorC.run(0)
 
-    def turnright(self,speed,angle): # This function turns the robot to the right.
+    # This function turns the robot to the right.
+    def turnright(self,speed,angle): 
         self.reset() # Again it resets first.
         self.motorB.run(speed*-1*self.LAR_MOTOR) # Then it makes one motor rotate one direction
         self.motorC.run(speed*self.LAR_MOTOR) # and the other motor rotates the other direction causing the robot to turn.
