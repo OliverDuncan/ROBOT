@@ -11,7 +11,9 @@ class Parkish:
        self.robot=robot
     
     def run(self):
+        self.robot.reset()
+        self.robot.resetGyro()
         self.robot.forward(40,2.4)
         self.robot.backward(40,.5)
         self.robot.turnright(25,30)
-        self.robot.backward(100,3)
+        self.robot.backward(20,4)
