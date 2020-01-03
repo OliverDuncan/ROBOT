@@ -23,8 +23,8 @@ class WheelchairLady:
         self.robot.resetGyro()
         self.robot.reset()
         self.robot.DogGearHold(0,0,-1)
-        self.robot.driveStraight(200,0.6,0)
-        self.robot.turnright(10,87)
+        self.robot.driveStraight(200,0.54,0)
+        self.robot.turnright(10,90)
         self.robot.driveStraight(200,3.6,90)
 
         # self.robot.DogGearHold(0,0,-1)
@@ -35,12 +35,18 @@ class WheelchairLady:
         self.robot.forward(20,0.7)
         gyro= self.robot.readGyro()
         self.robot.resetGyro()
-        self.robot.turnleft(7,47+(gyro -90))
+        self.robot.turnleft(7,48+(gyro -90))
         self.robot.resetGyro()
-        self.robot.driveStraight(200,2,0) # go a little bit further
-        self.robot.DogGearA(20,0.2,-1)
-        self.robot.backward(50,0.3)
-        self.robot.turnright(20,15)
+        self.robot.driveStraight(200,2.3,0) # go a little bit further
+        self.robot.DogGearHold(10,0.14,-1)
+        self.robot.backward(50,0.7)
+        self.robot.turnright(20,33)
+        self.robot.driveStraight(200,2.2,33)
+        self.robot.DogGearHold(10,.1,-1)
+        self.robot.backward(20,2)
+        self.robot.turnright(20,93)
+        self.robot.driveStraight(200,2.3,93)
+        self.robot.backward(50,1.5)
     
       
         

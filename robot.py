@@ -31,17 +31,18 @@ class Robot:
     
 
     def reset(self):
-        # this just resets all of the motor angle sensors and the gyro sensor
+        # this just resets all of the motor angle sensors 
         self.motorA.reset_angle(0)
         self.motorB.reset_angle(0)
         self.motorC.reset_angle(0)
         self.motorD.reset_angle(0)
     
     def resetGyro(self):
+        # this resets the gyro sensor
         self.gyroSensor.reset_angle(0)
 
     def forward(self,speed,distance):# This is the function to move the robot forward.
-        self.reset()# This resets the angles on all of the motors and the gyro sensor.
+        self.reset()# This resets the angles on all of the motors.
         # print("test")# This prints test on the computer for debugging
         self.motorB.run(speed*self.LAR_MOTOR)# This turns the motors on and sets them to the speed specified by the user and it multiplies it by the constant LAR_MOTOR 
         self.motorC.run(speed*self.LAR_MOTOR)# to transition the degrees per second into a scale of 1 to 100, 100 being as fast as possible for the large motor which is 990 d/s
@@ -174,6 +175,7 @@ class Robot:
     
     def shallowTurn(self,rightspeed,leftspeed,angle,direction): # Turns the robot shallowly by running both motors in the same direction but one faster than the other.
         self.reset()
+        self.resetGyro()
         self.motorB.run(rightspeed*self.LAR_MOTOR)
         self.motorC.run(leftspeed*self.LAR_MOTOR)
         # print("turn")
@@ -313,9 +315,9 @@ class Robot:
     def driveStraight(self,speed,distance,angle): # this drives straight by turning when thrown off to the same relative angle specified.
         self.reset()
         drivebase = DriveBase(self.motorC, self.motorB, 62.4, 101)
-        while self.motorC.angle() < distance*self.DEG_TO_ROT:
+        while self.motorC.angle() < distance*self.DEG_TO_ROT and self.motorB.angle() < distance*self.DEG_TO_ROT:
             error = self.gyroSensor.angle()- angle
-            error= error * -.5
+            error= error * -1
             drivebase.drive(speed, error)
         self.motorB.run(0)
         self.motorC.run(0)
