@@ -95,8 +95,23 @@ class Robot:
             self.motorC.run(speed/2*self.LAR_MOTOR)
         self.motorB.run(0)
         self.motorC.run(0)
-    
-    def DogGearA(self,speed,distance,direction): #Rotates the dog gear in port A
+
+    def turnLeftNoReset(self,speed,angle): #See Also turnright
+        self.reset()
+        self.motorB.run(speed*self.LAR_MOTOR)
+        self.motorC.run(speed*-1*self.LAR_MOTOR)
+        # print("turn")
+        while self.gyroSensor.angle() > angle:
+            wait(1)
+            # print(self.gyroSensor.angle())
+        while self.gyroSensor.angle() < ((angle)-1):
+            self.motorB.run(-speed/2*self.LAR_MOTOR)
+            self.motorC.run(speed/2*self.LAR_MOTOR)
+        self.motorB.run(0)
+        self.motorC.run(0)
+
+    #Rotates the dog gear in port A
+    def DogGearA(self,speed,distance,direction):
         self.reset()
         if direction == 1: # if the function is told either 1 or -1 then rotates in one direction or the other. 
             self.motorA.run(speed*self.MED_MOTOR)
@@ -173,8 +188,8 @@ class Robot:
                 # print(self.motorD.angle())
             self.motorD.stop(Stop.HOLD)
 
-    
-    def shallowTurn(self,rightspeed,leftspeed,angle,direction): # Turns the robot shallowly by running both motors in the same direction but one faster than the other.
+    # Turns the robot shallowly by running both motors in the same direction but one faster than the other.
+    def shallowTurn(self,rightspeed,leftspeed,angle,direction): 
         self.reset()
         self.resetGyro()
         self.motorB.run(rightspeed*self.LAR_MOTOR)
@@ -193,13 +208,15 @@ class Robot:
             self.motorB.run(0)
             self.motorC.run(0)
 
-    def runUntilStucked(self, motor, speed, direction): # Rotates specified motor until it can't anymore using premade function run_until_stalled
+    # Rotates specified motor until it can't anymore using premade function run_until_stalled
+    def runUntilStucked(self, motor, speed, direction): 
         if direction == 1:
             motor.run_until_stalled(speed*self.LAR_MOTOR, Stop.COAST, 100)
         elif direction == -1:
             motor.run_until_stalled(-speed*self.LAR_MOTOR, Stop.COAST, 100)
 
-    def findLine(self, speed, color, sensor): # Drives forward until specified sensor finds a line.
+    # Drives forward until specified sensor finds a line.
+    def findLine(self, speed, color, sensor):
         self.reset()
         self.motorB.run(speed*self.LAR_MOTOR)
         self.motorC.run(speed*self.LAR_MOTOR)
@@ -207,7 +224,7 @@ class Robot:
         if sensor == 1:
             while self.colorSensorleft.color() != color:
                 wait(5)
-                print(self.colorSensorleft.color())
+                #print(self.colorSensorleft.color())
         elif sensor == 2:
             while self.colorSensorright.color() != color:
                 wait(5)
@@ -260,7 +277,8 @@ class Robot:
     #             self.motorB.run(0)
     #     self.reset()
 
-    def alignWallMark2(self,speed): # This was the second attempt at a align wall function. Instead of using run_until_stalled we stop the motor when it starts moving slower. 
+    # This was the second attempt at a align wall function. Instead of using run_until_stalled we stop the motor when it starts moving slower. 
+    def alignWallMark2(self,speed): 
         self.reset()
         self.motorB.run(speed*-1*LAR_MOTOR)
         self.motorA.run(speed*-1*LAR_MOTOR)
@@ -270,15 +288,8 @@ class Robot:
         self.motorB.run(0)
         self.motorC.run(0)
 
-    # def motorBySeconds(motor, seconds, speed, direction):
-    #     self.reset()
-    #     if motor == self.motorA:
-    #         speed = speed*self.MED_MOTOR
-    #     else 
-    #         speed = speed*self.LAR_MOTOR 
-    #     motor.run_time(speed, seconds*1000, Stop.BRAKE)
-
-    def forwardMark2TheBetterOne(self,speed,distance,startSpeed): # This forward causes the motor to ramp up to the speed specified.
+    # This forward causes the motor to ramp up to the speed specified.
+    def forwardMark2TheBetterOne(self,speed,distance,startSpeed): 
         self.reset()
         # print("test")
         self.motorB.run(startSpeed*self.LAR_MOTOR)
@@ -292,7 +303,8 @@ class Robot:
         self.motorB.run(0)
         self.motorC.run(0)
 
-    def turnRightSloppy(self,speed,angle): # This pair of functions turns sloppily to save time in situations where it isn't nescessary to be precise.
+    # This pair of functions turns sloppily to save time in situations where it isn't nescessary to be precise.
+    def turnRightSloppy(self,speed,angle): 
         self.reset()
         self.motorB.run(speed*-1*self.LAR_MOTOR)
         self.motorC.run(speed*self.LAR_MOTOR)
@@ -313,10 +325,12 @@ class Robot:
         self.motorB.run(0)
         self.motorC.run(0)
 
-    def driveStraight(self,speed,distance,angle): # this drives straight by turning when thrown off to the same relative angle specified.
+    # this drives straight by turning when thrown off to the same relative angle specified.
+    def driveStraight(self,speed,distance,angle): 
         self.reset()
         drivebase = DriveBase(self.motorC, self.motorB, 62.4, 101)
         while self.motorC.angle() < distance*self.DEG_TO_ROT and self.motorB.angle() < distance*self.DEG_TO_ROT:
+            # calculate the error between the desired angle and where thr robot is facing
             error = self.gyroSensor.angle()- angle
             error= error * -1
             drivebase.drive(speed, error)
