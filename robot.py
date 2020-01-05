@@ -45,7 +45,7 @@ class Robot:
         self.reset()# This resets the angles on all of the motors.
         # print("test")# This prints test on the computer for debugging
         self.motorB.run(speed*self.LAR_MOTOR)# This turns the motors on and sets them to the speed specified by the user and it multiplies it by the constant LAR_MOTOR 
-        self.motorC.run(speed*self.LAR_MOTOR)# to transition the degrees per second into a scale of 1 to 100, 100 being as fast as possible for the large motor which is 990 d/s
+        self.motorC.run(speed*self.LAR_MOTOR)# to transition the degrees per second into a scale of 1 to 100, 100 being as fast as possible for the large motorA.run_timeotor which is 990 d/s
         # The motors will continue to run until they are told to stop, so until the motor angle is greater than the distance it will
         while self.motorC.angle() < distance*self.DEG_TO_ROT:
             wait(5)
