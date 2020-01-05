@@ -30,43 +30,24 @@ sensor3=GyroSensor(Port.S3)
 sensor4=TouchSensor(Port.S4)
 
 hoid= Robot(motorA,motorB,motorC,motorD,sensor1,sensor2,sensor3,sensor4)
-
-# #hoid.DogGearA(100,6,-1)
-# #hoid.forward(100,660)
-# #hoid.backward(100,660)
-# #hoid.turnleft(100,81)
-# #hoid.turnright(50,81)
-# #hoid.shallowTurn(50,150,90,-1)
-# crane = Crane(hoid)
-# #crane.run()
-# # bridge = Bridge(hoid)
-# # bridge.run()
-# # hoid.attachMotorD(50,660,-1)
-
-# #muchPointExploit = MuchPointExploit(hoid)
-# #muchPointExploit.run()
-
-# elevator=Elevator(hoid)
-# elevator.run()
-# hoid.alignWall(50)
-
 countED=0
-
-names=["crane","muchPointExploit","parkish","wheelchairlady","AllBatsAreDrones","TreesDeath"]
-missions=[Crane(hoid),MuchPointExploit(hoid),Parkish(hoid),WheelchairLady(hoid),AllBatsAreDrones(hoid),TreesDeath(hoid)]
+# Create the arrays
+names=["crane","muchPointExploit","TreesDeath","parkish","wheelchairlady"]
+missions=[Crane(hoid),MuchPointExploit(hoid),TreesDeath(hoid),Parkish(hoid),WheelchairLady(hoid)]
 
 def buttonrelease():
-    while any(brick.buttons()):4
-    wait(10)
-
+    while any(brick.buttons()):
+        wait(10)
 
 while True:
     brick.display.text(names[countED])
     if Button.CENTER in brick.buttons():
+        # run selected mission
         buttonrelease()        
         missions[countED].run()
         if (countED != 6):
             countED= countED+1
+    # move up and down in the list
     if Button.UP in brick.buttons():
         buttonrelease()
         countED= countED+1

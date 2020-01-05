@@ -63,7 +63,8 @@ class Robot:
         self.motorB.run(0)
         self.motorC.run(0)
 
-    def turnright(self,speed,angle): # This function turns the robot to the right.
+    # This function turns the robot to the right.
+    def turnright(self,speed,angle): 
         self.reset() # Again it resets first.
         self.motorB.run(speed*-1*self.LAR_MOTOR) # Then it makes one motor rotate one direction
         self.motorC.run(speed*self.LAR_MOTOR) # and the other motor rotates the other direction causing the robot to turn.
@@ -90,6 +91,20 @@ class Robot:
             wait(1)
             # print(self.gyroSensor.angle())
         while self.gyroSensor.angle() < ((angle*-1)-1):
+            self.motorB.run(-speed/2*self.LAR_MOTOR)
+            self.motorC.run(speed/2*self.LAR_MOTOR)
+        self.motorB.run(0)
+        self.motorC.run(0)
+
+    def turnLeftNoReset(self,speed,angle): #See Also turnright
+        self.reset()
+        self.motorB.run(speed*self.LAR_MOTOR)
+        self.motorC.run(speed*-1*self.LAR_MOTOR)
+        # print("turn")
+        while self.gyroSensor.angle() > angle:
+            wait(1)
+            # print(self.gyroSensor.angle())
+        while self.gyroSensor.angle() < ((angle)-1):
             self.motorB.run(-speed/2*self.LAR_MOTOR)
             self.motorC.run(speed/2*self.LAR_MOTOR)
         self.motorB.run(0)
@@ -259,12 +274,15 @@ class Robot:
     #             self.motorB.run(0)
     #     self.reset()
 
-    def alignWallMark2(self,speed): # This was the second attempt at a align wall function. Instead of using run_until_stalled we stop the motor when it starts moving slower. 
+    def alignWall(self,speed): # This was the second attempt at a align wall function. Instead of using run_until_stalled we stop the motor when it starts moving slower. 
         self.reset()
-        self.motorB.run(speed*-1*LAR_MOTOR)
-        self.motorA.run(speed*-1*LAR_MOTOR)
+        speed= speed * -1 * self.LAR_MOTOR
+        self.motorB.run(speed)
+        self.motorC.run(speed)
         # print("alignWall")
-        while motorB.speed() > 20 or motorC.speed() > 20:
+        wait (500)
+        while self.motorB.speed() < speed/2 or self.motorC.speed() < speed/2:
+            print(self.motorB.speed())
             wait(5)
         self.motorB.run(0)
         self.motorC.run(0)
@@ -315,12 +333,15 @@ class Robot:
     def driveStraight(self,speed,distance,angle): # this drives straight by turning when thrown off to the same relative angle specified.
         self.reset()
         drivebase = DriveBase(self.motorC, self.motorB, 62.4, 101)
+        brick.display.clear()
         while self.motorC.angle() < distance*self.DEG_TO_ROT and self.motorB.angle() < distance*self.DEG_TO_ROT:
             error = self.gyroSensor.angle()- angle
-            error= error * -1
+            brick.display.text(error)
+            error= error * -4
             drivebase.drive(speed, error)
         self.motorB.run(0)
         self.motorC.run(0)
+        
                
     def readGyro(self):
         return self.gyroSensor.angle()
