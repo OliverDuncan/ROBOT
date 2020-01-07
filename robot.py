@@ -336,7 +336,6 @@ class Robot:
         brick.display.clear()
         while self.motorC.angle() < distance*self.DEG_TO_ROT and self.motorB.angle() < distance*self.DEG_TO_ROT:
             error = self.gyroSensor.angle()- angle
-            brick.display.text(error)
             error= error * -4
             drivebase.drive(speed, error)
         self.motorB.run(0)
