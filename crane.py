@@ -13,6 +13,7 @@ class Crane:
     def run(self):
         self.robot.reset()
         self.robot.resetGyro()
+        self.robot.resetMotorA()
         motorA = self.robot.getMotorA()
 
         self.robot.shallowTurn(30,40,21,1)

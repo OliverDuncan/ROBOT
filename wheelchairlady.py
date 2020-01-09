@@ -22,7 +22,7 @@ class WheelchairLady:
 
         self.robot.resetGyro()
         self.robot.reset()
-        self.robot.DogGearHold(0,0,-1)
+        self.robot.DogGearHoldNoReset(0,0,-1)
         self.robot.driveStraight(200,0.2,0)
         self.robot.findLine(20,Color.BLACK,1)
         self.robot.backward(20,.018)
@@ -31,27 +31,41 @@ class WheelchairLady:
 
         # self.robot.DogGearHold(0,0,-1)
         # self.robot.forward(50,4)
-        self.robot.DogGearA(15,0.25,-1)
-        self.robot.forward(20,0.2)
-        self.robot.DogGearA(20,0.3,1)
+        # drops red block
+        self.robot.DogGearHoldNoReset(15,0.25,-1) 
+        self.robot.forward(20,0.2) 
+        self.robot.DogGearHoldNoReset(20,0,1)
         self.robot.driveStraight(200,.7,90)
         self.robot.findLine(20,Color.WHITE,2)
         self.robot.findLine(20,Color.BLACK,2)
-        self.robot.turnLeftNoReset(10,26)
-        self.robot.driveStraight(200,2.18,25)
+        self.robot.turnLeftNoReset(10,29)
+        self.robot.driveStraight(200,2.14,32)
     
         self.robot.backward(20,.2)
-        self.robot.DogGearHold(15,0.15,-1)
+        # Drops tan block
+        self.robot.DogGearHoldNoReset(15,0.16,-1)
         self.robot.backward(15,0.2)
         self.robot.findLine(-20,Color.WHITE,1)
+        self.robot.backward(10,.5)
         self.robot.turnright(10,59)
-        self.robot.driveStraight(200,1.5,58)
-        self.robot.DogGearHold(15,.01,-1)
+        # does elevator.
+        self.robot.driveStraight(200,1.8,58)
+        self.robot.DogGearHoldNoReset(15,.25,-1)
         self.robot.backward(20,1.5)
         self.robot.findLine(-20,Color.WHITE,1)
         self.robot.findLine(-20,Color.BLACK,1)
         self.robot.turnLeftNoReset(10,0)
-        self.robot.Align(20)
+        # alligns onto the wall
+        self.robot.alignWall(30)
+        self.robot.driveStraight(200,1,0)
+        self.robot.turnright(10,90)
+        self.robot.driveStraight(200,1.8,90)
+        self.robot.resetGyro()
+        self.robot.turnright(10,45)
+        self.robot.forward(20,1)
+    
+    
+        
 
        
       

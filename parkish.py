@@ -13,7 +13,8 @@ class Parkish:
     def run(self):
         self.robot.reset()
         self.robot.resetGyro()
-        self.robot.forward(40,2.4)
+        self.robot.forward(40,2.2)
         self.robot.backward(40,.5)
-        self.robot.turnright(25,30)
-        self.robot.backward(20,4)
+        self.robot.turnRightSloppy(25,30)
+        wait(100)
+        self.robot.backward(70,4)

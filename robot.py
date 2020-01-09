@@ -32,10 +32,12 @@ class Robot:
 
     def reset(self):
         # this just resets all of the motor angle sensors 
-        self.motorA.reset_angle(0)
         self.motorB.reset_angle(0)
         self.motorC.reset_angle(0)
         self.motorD.reset_angle(0)
+    
+    def resetMotorA(self):
+        self.motorA.reset_angle(0)
     
     def resetGyro(self):
         # this resets the gyro sensor
@@ -111,7 +113,7 @@ class Robot:
         self.motorC.run(0)
     
     def DogGearA(self,speed,distance,direction): #Rotates the dog gear in port A
-        self.reset()
+        self.resetMotorA()
         if direction == 1: # if the function is told either 1 or -1 then rotates in one direction or the other. 
             self.motorA.run(speed*self.MED_MOTOR)
             # print("clDogRotate")
@@ -130,7 +132,7 @@ class Robot:
             self.motorA.run(0)
 
     def DogGearHold(self,speed,distance,direction): #This causes the dog gear to hold its position.
-        self.reset()
+        self.resetMotorA()
         if direction == 1:
             self.motorA.run(speed*self.MED_MOTOR)
             # print("clDogRotate")
@@ -147,6 +149,26 @@ class Robot:
                 wait(5)
                 # print(self.motorA.angle())
             self.motorA.stop(Stop.HOLD)
+            
+    def DogGearHoldNoReset(self,speed,distance,direction): #This causes the dog gear to hold its position.
+        if direction == 1:
+            self.motorA.run(speed*self.MED_MOTOR)
+            # print("clDogRotate")
+            while self.motorA.angle() < distance*self.DEG_TO_ROT:
+                wait(5)
+                print(self.motorA.angle())
+            self.motorA.stop(Stop.HOLD)
+
+        elif direction == -1:
+            self.motorA.run(speed*direction*self.MED_MOTOR)
+            # print("cnclDogRotate")
+            # print(distance*direction*self.DEG_TO_ROT)
+            while self.motorA.angle() > distance*direction*self.DEG_TO_ROT:
+                wait(5)
+                # print(self.motorA.angle())
+            self.motorA.stop(Stop.HOLD)
+
+
 
 
     def attachMotorD(self,speed,distance,direction): # This rotates the large attachment motor.
@@ -316,8 +338,8 @@ class Robot:
         # print("turn")
         while self.gyroSensor.angle() < angle:
             wait(1)
-        self.motorB.run(0)
-        self.motorC.run(0)
+        self.motorB.stop()
+        self.motorC.stop()
         # print(self.gyroSensor.angle())
 
     def turnLeftSloppy(self,speed,angle):
