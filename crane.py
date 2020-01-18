@@ -11,37 +11,32 @@ class Crane:
        self.robot=robot
 
     def run(self):
+
+        DGS=0.1
+        WL=100
+        WS=50
+
         self.robot.reset()
         self.robot.resetGyro()
         self.robot.resetMotorA()
         motorA = self.robot.getMotorA()
-
+      
         self.robot.shallowTurn(30,40,22,1)
         self.robot.shallowTurn(40,30,-19,-1)
-        # self.robot.forward(25,.1)
         self.robot.forward(20,.75)
         self.robot.forward(5,.45)
-        # self.robot.forward(30, .5)
-        # self.robot.turnright(10,45)
-        # self.robot.forward(30, .5)
-      
-        # self.robot.turnleftNoReset(10,0)
-        # self.robot.forward(30,1.5)
-        # self.robot.shallowTurn(30,40,20,1)
-        # self.robot.shallowTurn(40,30,-20,-1)
-        # self.robot.forward(25,1.10)
-        wait(250)
-        self.robot.DogGearA(20, 0.19, 1)
-        wait(200)
-        self.robot.DogGearA(20, 0.19, -1)
         wait(100)
-        self.robot.DogGearA(20, 0.19, 1)
-        wait(200)
-        self.robot.DogGearA(20, 0.19,-1)
-        wait(100)
-        self.robot.DogGearA(20, 0.19, 1)
+        self.robot.DogGearA(20, DGS, 1)
+        wait(WL)
+        self.robot.DogGearA(20, DGS, -1)
+        wait(WS)
+        self.robot.DogGearA(20, DGS, 1)
+        wait(WL)
+        self.robot.DogGearA(20, DGS, -1)
+        wait(WS)
+        self.robot.DogGearA(20, DGS, 1)
         wait(600)
-        self.robot.DogGearA(20, 0.19, -1)
+        self.robot.DogGearA(20, DGS, -1)
         self.robot.backward(50,1)
         self.robot.turnright(20,90)
         self.robot.backward(50,2.5)
