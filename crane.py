@@ -13,8 +13,8 @@ class Crane:
     def run(self):
 
         DGS=0.1
-        WL=100
-        WS=50
+        WL=0
+        WS=0
 
         self.robot.reset()
         self.robot.resetGyro()
