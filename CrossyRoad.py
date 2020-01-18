@@ -6,20 +6,15 @@ from pybricks.parameters import (Port, Stop, Direction, Button, Color,
 from pybricks.tools import print, wait, StopWatch
 from pybricks.robotics import DriveBase
 
-class MuchPointExploit:
+class CrossyRoad:
     def  __init__(self, robot):
        self.robot=robot
-    
     def run(self):
-        self.robot.reset()
-        self.robot.resetMotorA()
         self.robot.resetGyro()
-        # deposit units
-        self.robot.forward(50,2.1)
-        self.robot.backward(100,0.8)
-        # go back home
-        self.robot.turnright(25,90)
-        wait(100)
+        print(self.robot.readGyro)
+        wait(50)
+        self.robot.driveStraight(300,4.5,0)
+        self.robot.backward(100,2)
+        self.robot.backward(100,6.5)
         self.robot.resetGyro()
-        self.robot.backward(100,1.1)
-        self.robot.turnleft(50,90)
+        self.robot.turnleft(20,90)

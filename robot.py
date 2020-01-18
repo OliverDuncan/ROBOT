@@ -303,7 +303,7 @@ class Robot:
         self.motorC.run(speed)
         # print("alignWall")
         wait (500)
-        while self.motorB.speed() < speed/3 or self.motorC.speed() < speed/3:
+        while self.motorB.speed() < -20*self.LAR_MOTOR or self.motorC.speed() < -20*self.LAR_MOTOR:
             # print(self.motorB.speed())
             wait(5)
         self.motorB.run(0)
@@ -359,6 +359,7 @@ class Robot:
         while self.motorC.angle() < distance*self.DEG_TO_ROT and self.motorB.angle() < distance*self.DEG_TO_ROT:
             error = self.gyroSensor.angle()- angle
             error= error * -4
+            print(error)
             drivebase.drive(speed, error)
         self.motorB.run(0)
         self.motorC.run(0)
@@ -374,11 +375,27 @@ class Robot:
         # print("findLine")
         if sensor == 1:
             while self.colorSensorleft.color() == Color.WHITE or self.colorSensorleft.color() == Color.BLACK:
-                wait(5)
-                print(self.colorSensorleft.color())
+                while self.colorSensorleft.color() == Color.WHITE or self.colorSensorleft.color() == Color.BLACK:
+                    wait(5)
+                wait(10)
+                    # print(self.colorSensorleft.color())
         elif sensor == 2:
             while self.colorSensorright.color() == Color.WHITE or self.colorSensorright.color() == Color.BLACK:
-                wait(5)
-                print(self.colorSensorright.color())
+                while self.colorSensorright.color() == Color.WHITE or self.colorSensorright.color() == Color.BLACK:
+                    wait(5)
+                wait(10)
+                # print(self.colorSensorright.color())
         self.motorB.run(0)
         self.motorC.run(0)
+
+    # def forwardRampUp(self,finalSpeed,distance,accel):
+    #     self.reset()
+    #     speed=1 
+    #     while speed != finalSpeed and self.motorC.angle() < distance*self.DEG_TO_ROT::
+    #          self.motorB.run(speed)      
+    #          self.motorC.run(speed)
+    #          wait(10)
+    #          speed=speed+accel
+    #     self.motorB.run(0)
+    #     self.motorC.run(0)
+    #

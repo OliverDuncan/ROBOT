@@ -12,6 +12,7 @@ class WheelchairLady:
     def run(self):
         self.robot.resetGyro()
         self.robot.reset()
+        self.robot.resetMotorA()
         self.robot.DogGearHoldNoReset(0,0,-1)
         self.robot.driveStraight(200,0.2,0)
         self.robot.findLine(20,Color.BLACK,1)
@@ -42,7 +43,9 @@ class WheelchairLady:
         self.robot.findLine(-20,Color.BLACK,1)
         self.robot.turnLeftNoReset(10,0)
         # alligns onto the wall
-        self.robot.alignWall(30)
+        # self.robot.alignWall(30)
+        self.robot.backward(30,3)
+
         self.robot.resetGyro()
         self.robot.driveStraight(200,.85,0)
         self.robot.turnright(10,90)
@@ -50,11 +53,9 @@ class WheelchairLady:
         self.robot.dontFindTheColor(25,1)
         self.robot.backward(20,.4)
         #self.robot.resetGyro()
-        self.robot.turnright(10,120)
+        self.robot.turnright(10,121)
         self.robot.forward(20,0.5)
         self.robot.backward(50,.5) 
-        # self.robot.turnLeftNoReset(10,90)   
-        # self.robot.backward(50,1)
         # This took forever but I am glad it works.
     
     
