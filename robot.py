@@ -32,10 +32,12 @@ class Robot:
 
     def reset(self):
         # this just resets all of the motor angle sensors 
-        self.motorA.reset_angle(0)
         self.motorB.reset_angle(0)
         self.motorC.reset_angle(0)
         self.motorD.reset_angle(0)
+    
+    def resetMotorA(self):
+        self.motorA.reset_angle(0)
     
     def resetGyro(self):
         # this resets the gyro sensor
@@ -111,13 +113,13 @@ class Robot:
         self.motorC.run(0)
     
     def DogGearA(self,speed,distance,direction): #Rotates the dog gear in port A
-        self.reset()
+        self.resetMotorA()
         if direction == 1: # if the function is told either 1 or -1 then rotates in one direction or the other. 
             self.motorA.run(speed*self.MED_MOTOR)
             # print("clDogRotate")
             while self.motorA.angle() < distance*self.DEG_TO_ROT: # it turns the motor until it meets distance specifications.
-                wait(5)
-                print(self.motorA.angle())
+                wait(1)
+                # print(self.motorA.angle())
             self.motorA.run(0)
 
         elif direction == -1:
@@ -125,18 +127,18 @@ class Robot:
             # print("cnclDogRotate")
             # print(distance*direction*self.DEG_TO_ROT)
             while self.motorA.angle() > distance*direction*self.DEG_TO_ROT:
-                wait(5)
+                wait(1)
                 # print(self.motorA.angle())
             self.motorA.run(0)
 
     def DogGearHold(self,speed,distance,direction): #This causes the dog gear to hold its position.
-        self.reset()
+        self.resetMotorA()
         if direction == 1:
             self.motorA.run(speed*self.MED_MOTOR)
             # print("clDogRotate")
             while self.motorA.angle() < distance*self.DEG_TO_ROT:
-                wait(5)
-                print(self.motorA.angle())
+                wait(1)
+                # print(self.motorA.angle())
             self.motorA.stop(Stop.HOLD)
 
         elif direction == -1:
@@ -144,9 +146,29 @@ class Robot:
             # print("cnclDogRotate")
             # print(distance*direction*self.DEG_TO_ROT)
             while self.motorA.angle() > distance*direction*self.DEG_TO_ROT:
-                wait(5)
+                wait(1)
                 # print(self.motorA.angle())
             self.motorA.stop(Stop.HOLD)
+            
+    def DogGearHoldNoReset(self,speed,distance,direction): #This causes the dog gear to hold its position.
+        if direction == 1:
+            self.motorA.run(speed*self.MED_MOTOR)
+            # print("clDogRotate")
+            while self.motorA.angle() < distance*self.DEG_TO_ROT:
+                wait(1)
+                # print(self.motorA.angle())
+            self.motorA.stop(Stop.HOLD)
+
+        elif direction == -1:
+            self.motorA.run(speed*direction*self.MED_MOTOR)
+            # print("cnclDogRotate")
+            # print(distance*direction*self.DEG_TO_ROT)
+            while self.motorA.angle() > distance*direction*self.DEG_TO_ROT:
+                wait(1)
+                # print(self.motorA.angle())
+            self.motorA.stop(Stop.HOLD)
+
+
 
 
     def attachMotorD(self,speed,distance,direction): # This rotates the large attachment motor.
@@ -281,8 +303,8 @@ class Robot:
         self.motorC.run(speed)
         # print("alignWall")
         wait (500)
-        while self.motorB.speed() < speed/2 or self.motorC.speed() < speed/2:
-            print(self.motorB.speed())
+        while self.motorB.speed() < -20*self.LAR_MOTOR or self.motorC.speed() < -20*self.LAR_MOTOR:
+            # print(self.motorB.speed())
             wait(5)
         self.motorB.run(0)
         self.motorC.run(0)
@@ -316,8 +338,8 @@ class Robot:
         # print("turn")
         while self.gyroSensor.angle() < angle:
             wait(1)
-        self.motorB.run(0)
-        self.motorC.run(0)
+        self.motorB.stop()
+        self.motorC.stop()
         # print(self.gyroSensor.angle())
 
     def turnLeftSloppy(self,speed,angle):
@@ -336,8 +358,8 @@ class Robot:
         brick.display.clear()
         while self.motorC.angle() < distance*self.DEG_TO_ROT and self.motorB.angle() < distance*self.DEG_TO_ROT:
             error = self.gyroSensor.angle()- angle
-            brick.display.text(error)
             error= error * -4
+            print(error)
             drivebase.drive(speed, error)
         self.motorB.run(0)
         self.motorC.run(0)
@@ -345,3 +367,35 @@ class Robot:
                
     def readGyro(self):
         return self.gyroSensor.angle()
+
+    def dontFindTheColor(self,speed,sensor):
+        self.reset()
+        self.motorB.run(speed*self.LAR_MOTOR)
+        self.motorC.run(speed*self.LAR_MOTOR)
+        # print("findLine")
+        if sensor == 1:
+            while self.colorSensorleft.color() == Color.WHITE or self.colorSensorleft.color() == Color.BLACK:
+                while self.colorSensorleft.color() == Color.WHITE or self.colorSensorleft.color() == Color.BLACK:
+                    wait(5)
+                wait(10)
+                    # print(self.colorSensorleft.color())
+        elif sensor == 2:
+            while self.colorSensorright.color() == Color.WHITE or self.colorSensorright.color() == Color.BLACK:
+                while self.colorSensorright.color() == Color.WHITE or self.colorSensorright.color() == Color.BLACK:
+                    wait(5)
+                wait(10)
+                # print(self.colorSensorright.color())
+        self.motorB.run(0)
+        self.motorC.run(0)
+
+    # def forwardRampUp(self,finalSpeed,distance,accel):
+    #     self.reset()
+    #     speed=1 
+    #     while speed != finalSpeed and self.motorC.angle() < distance*self.DEG_TO_ROT::
+    #          self.motorB.run(speed)      
+    #          self.motorC.run(speed)
+    #          wait(10)
+    #          speed=speed+accel
+    #     self.motorB.run(0)
+    #     self.motorC.run(0)
+    #

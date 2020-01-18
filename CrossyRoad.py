@@ -6,19 +6,15 @@ from pybricks.parameters import (Port, Stop, Direction, Button, Color,
 from pybricks.tools import print, wait, StopWatch
 from pybricks.robotics import DriveBase
 
-class TreesDeath:
+class CrossyRoad:
     def  __init__(self, robot):
        self.robot=robot
-    
     def run(self):
-        self.robot.reset()
         self.robot.resetGyro()
-        self.robot.attachMotorDHold(10,.25,-1)
-        self.robot.driveStraight(200,4,0)
-        self.robot.attachMotorD(5,.4,-1)
-        wait(500)
+        print(self.robot.readGyro)
+        wait(50)
+        self.robot.driveStraight(300,4.5,0)
+        self.robot.backward(100,2)
+        self.robot.backward(100,6.5)
         self.robot.resetGyro()
-        self.robot.backward(50,2.2)
-        self.robot.attachMotorD(10,.1,1)
-        self.robot.turnRightSloppy(20,1)
-        self.robot.backward(50,5)
+        self.robot.turnleft(20,90)
