@@ -10,4 +10,4 @@ class Testunodos:
     def  __init__(self, robot):
        self.robot=robot
     def run(self):
-        self.robot.DogGearA(30,1,-1)
+        self.robot.backwardRampUp(100,4)

@@ -388,14 +388,30 @@ class Robot:
         self.motorB.run(0)
         self.motorC.run(0)
 
-    # def forwardRampUp(self,finalSpeed,distance,accel):
-    #     self.reset()
-    #     speed=1 
-    #     while speed != finalSpeed and self.motorC.angle() < distance*self.DEG_TO_ROT::
-    #          self.motorB.run(speed)      
-    #          self.motorC.run(speed)
-    #          wait(10)
-    #          speed=speed+accel
-    #     self.motorB.run(0)
-    #     self.motorC.run(0)
-    #
+    def forwardRampUp(self,finalSpeed,distance):
+        accel=1.1
+        self.reset()
+        speed=1* self.LAR_MOTOR
+        while speed < finalSpeed*self.LAR_MOTOR :
+            self.motorB.run(speed)      
+            self.motorC.run(speed)
+            wait(10)
+            speed=speed*accel
+        while self.motorC.angle() < distance*self.DEG_TO_ROT:
+            wait(10)
+        self.motorB.run(0)
+        self.motorC.run(0)
+    
+    def backwardRampUp(self,finalSpeed,distance):
+        accel=1.1
+        self.reset()
+        speed=-1* self.LAR_MOTOR
+        while speed > finalSpeed*self.LAR_MOTOR*-1 :
+            self.motorB.run(speed)      
+            self.motorC.run(speed)
+            wait(10)
+            speed=speed*accel
+        while self.motorC.angle() > distance*self.DEG_TO_ROT:
+            wait(10)
+        self.motorB.run(0)
+        self.motorC.run(0)
