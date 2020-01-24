@@ -180,7 +180,7 @@ class Robot:
             while self.motorD.angle() < distance*self.DEG_TO_ROT:
                 wait(5)
                 # print(self.motorD.angle())
-            self.motorD.run(0)
+            self.motorD.stop(Stop.COAST)
 
         elif direction == -1:
             self.motorD.run(speed*direction*self.LAR_MOTOR)
@@ -188,7 +188,7 @@ class Robot:
             while self.motorD.angle() > distance*direction*self.DEG_TO_ROT:
                 wait(5)
                 # print(self.motorD.angle())
-            self.motorD.run(0)
+            self.motorD.stop(Stop.COAST)
 
     def attachMotorDHold(self,speed,distance,direction):
         self.reset()
@@ -363,7 +363,18 @@ class Robot:
             drivebase.drive(speed, error)
         self.motorB.run(0)
         self.motorC.run(0)
-        
+    
+    def driveStraightTest(self,speed,distance,angle): # this drives straight by turning when thrown off to the same relative angle specified.
+        self.reset()
+        drivebase = DriveBase(self.motorC, self.motorB, 62.4, 101)
+        brick.display.clear()
+        while self.motorC.angle() < distance*self.DEG_TO_ROT and self.motorB.angle() < distance*self.DEG_TO_ROT:
+            error = self.gyroSensor.angle()- angle
+            error= error * -10
+            print(error)
+            drivebase.drive(speed, error)
+        self.motorB.run(0)
+        self.motorC.run(0)
                
     def readGyro(self):
         return self.gyroSensor.angle()
@@ -411,7 +422,7 @@ class Robot:
             self.motorC.run(speed)
             wait(10)
             speed=speed*accel
-        while self.motorC.angle() > distance*self.DEG_TO_ROT:
+        while self.motorC.angle() > distance*self.DEG_TO_ROT*-1:
             wait(10)
         self.motorB.run(0)
         self.motorC.run(0)
