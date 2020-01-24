@@ -10,4 +10,6 @@ class Testunodos:
     def  __init__(self, robot):
        self.robot=robot
     def run(self):
-        self.robot.backwardRampUp(100,4)
+        self.robot.resetGyro()
+        self.robot.driveStraightTest(100,4,0)
+        
