@@ -243,58 +243,14 @@ class Robot:
         if sensor == 1:
             while self.colorSensorleft.color() != color:
                 wait(5)
-                print(self.colorSensorleft.color())
+                # print(self.colorSensorleft.color())
         elif sensor == 2:
             while self.colorSensorright.color() != color:
                 wait(5)
                 # print(self.colorSensorright.color())
         self.motorB.run(0)
         self.motorC.run(0)
-    # def alignWall(self, speed ):  This was the first attempt at an align wall function but a better one was made.
-    #     speed = speed * self.LAR_MOTOR This one didn't work because it would just spin in circles.
-    #     self.reset()
-    #     self.motorB.run(-1*speed)
-    #     self.motorC.run(speed*-1)
-    #     print("alignWall")
-    #     while not self.motorB.stalled() or not self.motorC.stalled() or self.motorB.speed() > 0 or self.motorC.speed() > 0:
-    #         if not self.motorB.stalled() and not self.motorC.stalled():
-    #             wait(5)
-    #             print("NoneStalled")
-    #         elif self.motorB.stalled() and not self.motorC.stalled():
-    #             wait(5)
-    #             self.motorB.run(0)
-    #             self.motorC.run(-1*speed)
-    #             print("B_Stalled")
-    #         elif not self.motorB.stalled() and self.motorC.stalled():
-    #             wait(5)
-    #             self.motorB.run(-1*speed)
-    #             self.motorC.run(0)
-    #             print("C_Stalled")
-    #         elif self.motorB.stalled() and self.motorC.stalled():
-    #             self.motorB.run(0)
-    #             self.motorC.run(0)
-    #             print("AllStalled")
-    #     self.reset()
-    # def alignWall(self, speed,):
-    #     self.reset()
-    #     self.motorB.run(-1*speed)
-    #     self.motorA.run(speed*-1)
-    #     print("alignWall")
-    #     while !self.motorA.stalled() || !self.motorB.stalled():
-    #         if !self.motorA.stalled() && !self.motorB.stalled():
-    #             wait(5)
-    #         elif self.motorA.stalled() && !self.motorB.stalled():
-    #             wait(5)
-    #             self.motorA.run(0)
-    #             self.motorB.run(-1*speed)
-    #         elif !self.motorA.stalled() && self.motorB.stalled():
-    #             wait(5)
-    #             self.motorA.run(-1*speed)
-    #             self.motorB.run(0)
-    #         elif self.motorA.stalled() && self.motorB.stalled():
-    #             self.motorA.run(0)
-    #             self.motorB.run(0)
-    #     self.reset()
+
 
     def alignWall(self,speed): # This was the second attempt at a align wall function. Instead of using run_until_stalled we stop the motor when it starts moving slower. 
         self.reset()
@@ -316,20 +272,6 @@ class Robot:
     #     else 
     #         speed = speed*self.LAR_MOTOR 
     #     motor.run_time(speed, seconds*1000, Stop.BRAKE)
-
-    def forwardMark2TheBetterOne(self,speed,distance,startSpeed): # This forward causes the motor to ramp up to the speed specified.
-        self.reset()
-        # print("test")
-        self.motorB.run(startSpeed*self.LAR_MOTOR)
-        self.motorC.run(startSpeed*self.LAR_MOTOR)
-        while self.motorC.angle() < distance*self.DEG_TO_ROT/4 and self.motorC.angle() < 1*self.DEG_TO_ROT:
-            wait(10)
-        self.motorB.run(speed*self.LAR_MOTOR)
-        self.motorC.run(speed*self.LAR_MOTOR)
-        while self.motorC.angle() < distance*self.DEG_TO_ROT:
-            wait(10)
-        self.motorB.run(0)
-        self.motorC.run(0)
 
     def turnRightSloppy(self,speed,angle): # This pair of functions turns sloppily to save time in situations where it isn't nescessary to be precise.
         self.reset()
@@ -402,7 +344,7 @@ class Robot:
     def forwardRampUp(self,finalSpeed,distance):
         accel=1.1
         self.reset()
-        speed=1* self.LAR_MOTOR
+        speed=5* self.LAR_MOTOR
         while speed < finalSpeed*self.LAR_MOTOR :
             self.motorB.run(speed)      
             self.motorC.run(speed)
@@ -416,7 +358,7 @@ class Robot:
     def backwardRampUp(self,finalSpeed,distance):
         accel=1.1
         self.reset()
-        speed=-1* self.LAR_MOTOR
+        speed=-5* self.LAR_MOTOR
         while speed > finalSpeed*self.LAR_MOTOR*-1 :
             self.motorB.run(speed)      
             self.motorC.run(speed)
