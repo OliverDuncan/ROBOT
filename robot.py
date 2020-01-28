@@ -252,18 +252,7 @@ class Robot:
         self.motorC.run(0)
 
 
-    def alignWall(self,speed): # This was the second attempt at a align wall function. Instead of using run_until_stalled we stop the motor when it starts moving slower. 
-        self.reset()
-        speed= speed * -1 * self.LAR_MOTOR
-        self.motorB.run(speed)
-        self.motorC.run(speed)
-        # print("alignWall")
-        wait (500)
-        while self.motorB.speed() < -20*self.LAR_MOTOR or self.motorC.speed() < -20*self.LAR_MOTOR:
-            # print(self.motorB.speed())
-            wait(5)
-        self.motorB.run(0)
-        self.motorC.run(0)
+  
 
     # def motorBySeconds(motor, seconds, speed, direction):
     #     self.reset()
@@ -366,5 +355,22 @@ class Robot:
             speed=speed*accel
         while self.motorC.angle() > distance*self.DEG_TO_ROT*-1:
             wait(10)
+        self.motorB.run(0)
+        self.motorC.run(0)
+
+    def alignWall(self,finalSpeed): # This was the second attempt at a align wall function. Instead of using run_until_stalled we stop the motor when it starts moving slower. 
+        self.reset()
+        finalSpeed = finalSpeed * -1 * self.LAR_MOTOR
+        speed= 5 * -1 * self.LAR_MOTOR
+        while speed > finalSpeed
+            self.motorB.run(speed)
+            self.motorC.run(speed)
+            wait(10)
+            speed = speed * 1.1
+        # print("alignWall")
+        wait (500)
+        while self.motorB.speed() < -20*self.LAR_MOTOR or self.motorC.speed() < -20*self.LAR_MOTOR:
+            # print(self.motorB.speed())
+            wait(5)
         self.motorB.run(0)
         self.motorC.run(0)
