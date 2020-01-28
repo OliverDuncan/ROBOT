@@ -345,7 +345,7 @@ class Robot:
         accel=1.1
         self.reset()
         speed=5* self.LAR_MOTOR
-        while speed < finalSpeed*self.LAR_MOTOR :
+        while speed < finalSpeed*self.LAR_MOTOR and self.motorC.angle() < distance*self.DEG_TO_ROT :
             self.motorB.run(speed)      
             self.motorC.run(speed)
             wait(10)
@@ -356,10 +356,10 @@ class Robot:
         self.motorC.run(0)
     
     def backwardRampUp(self,finalSpeed,distance):
-        accel=1.1
+        accel=1.2
         self.reset()
         speed=-5* self.LAR_MOTOR
-        while speed > finalSpeed*self.LAR_MOTOR*-1 :
+        while speed > finalSpeed*self.LAR_MOTOR*-1 and  self.motorC.angle() > distance*self.DEG_TO_ROT*-1:
             self.motorB.run(speed)      
             self.motorC.run(speed)
             wait(10)

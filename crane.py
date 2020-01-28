@@ -13,18 +13,20 @@ class Crane:
     def run(self):
 
         DGS=0.1
-        WL=0
-        WS=0
+        WL=600
+        WS=200
 
         self.robot.reset()
         self.robot.resetGyro()
         self.robot.resetMotorA()
         motorA = self.robot.getMotorA()
       
+        self.robot.attachMotorD(75,.5,1)
         self.robot.shallowTurn(30,40,22,1)
         self.robot.shallowTurn(40,30,-19,-1)
-        self.robot.forwardRampUp(20,.75)
-        self.robot.forwardRampUp(5,.45)
+        self.robot.forward(20,.75)
+        self.robot.attachMotorD(50,.7,-1)
+        self.robot.forward(5,1.20)
         wait(100)
         self.robot.DogGearA(20, DGS, 1)
         wait(WL)

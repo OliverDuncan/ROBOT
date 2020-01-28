@@ -15,6 +15,7 @@ class CrossyRoad:
         wait(50)
         self.robot.driveStraight(300,4.5,0)
         self.robot.backward(100,2)
-        self.robot.backward(100,6.5)
+        self.robot.alignWall(100,6.5)
+        self.robot.forward(50,0.1)
         self.robot.resetGyro()
         self.robot.turnleft(20,90)

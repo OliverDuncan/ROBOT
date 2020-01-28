@@ -10,6 +10,9 @@ class Testunodos:
     def  __init__(self, robot):
        self.robot=robot
     def run(self):
+        self.robot.reset()
+        self.robot.resetMotorA()
         self.robot.resetGyro()
-        self.robot.driveStraightTest(100,4,0)
-        
+        # deposit units
+        self.robot.forward(50,2.1)
+    
