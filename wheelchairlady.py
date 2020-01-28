@@ -35,31 +35,34 @@ class WheelchairLady:
         self.robot.DogGearHoldNoReset(15,0.12,-1)
         self.robot.backward(15,0.2)
         self.robot.findLine(-20,Color.WHITE,1)
-        self.robot.backwardRampUp(10,.5)
+        self.robot.backwardRampUp(10,.4)
         self.robot.turnright(10,59)
         # does elevator.
-        self.robot.driveStraight(200,2,59)
+        self.robot.driveStraight(200,2,60)
         self.robot.DogGearHoldNoReset(15,.25,-1)
         self.robot.backward(20,1.5)
         self.robot.findLine(-20,Color.WHITE,1)
         self.robot.findLine(-20,Color.BLACK,1)
+        self.robot.backwardRampUp(40,.3)
         self.robot.turnLeftNoReset(10,0)
         # alligns onto the wall
         self.robot.backwardRampUp(50,1.8)
         # self.robot.resetGyro()
         self.robot.driveStraight(200,.85,0)
         self.robot.turnright(10,90)
-        self.robot.driveStraight(200,4,90)
-        self.robot.backwardRampUp(20,3.05)
+        self.robot.driveStraight(200,2.5,90)
+        self.robot.backwardRampUp(20,2.5)
         self.robot.turnLeftNoReset(15,0)
         self.robot.backwardRampUp(50,1.5)
         self.robot.driveStraight(200,1,0)
         self.robot.findLine(20,Color.WHITE,2)
         self.robot.findLine(20,Color.BLACK,2)
-        self.robot.backwardRampUp(15,.5)
-        self.robot.turnright(15,-24)
-        wait(1000)
-        self.robot.driveStraight(200,5,-27)
+        self.robot.backwardRampUp(15,.7)
+        self.robot.turnright(15,-27)
+        wait(500)
+        self.robot.driveStraight(100,2,-27)
+        self.robot.findLine(20,Color.BLACK,1)
+        self.robot.driveStraight(200,3,-27)
 
         
         # # This took forever but I am glad it works.
@@ -71,10 +74,4 @@ class WheelchairLady:
       
         
 
-        # self.robot.turnright(10,10)
-        # self.robot.forward(20,0.2)
-        # self.robot.DogGearHold(10,0.05 ,-1)
-        # self.robot.turnright(10,60)
-
-        # self.robot.forward(100,3)
-    
+        

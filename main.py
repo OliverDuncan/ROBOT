@@ -19,7 +19,7 @@ from testunodos import Testunodos
 from TreesDeath import TreesDeath
 from CrossyRoad import CrossyRoad
 from Deathish import Deathish
-from HoldMotorD import holdMotorD
+from HoldMotorD import HoldMotorD
 
 # Write your program here 
 brick.sound.beep()

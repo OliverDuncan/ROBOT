@@ -6,7 +6,7 @@ from pybricks.parameters import (Port, Stop, Direction, Button, Color,
 from pybricks.tools import print, wait, StopWatch
 from pybricks.robotics import DriveBase
 
-class holdMotorD:
+class HoldMotorD:
     def  __init__(self, robot):
        self.robot=robot
     
