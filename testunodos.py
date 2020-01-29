@@ -13,6 +13,14 @@ class Testunodos:
         self.robot.reset()
         self.robot.resetMotorA()
         self.robot.resetGyro()
-        # deposit units
-        self.robot.forward(50,2.1)
-    
+        # push the blue block for crane
+        self.robot.forward(50,2.65)
+        self.robot.backward(35,.25)
+        self.robot.DogGearA(20, .5, -1)
+        self.robot.backwardRampUp(50,.7)
+        # go back home
+        self.robot.turnright(25,70)
+        wait(100)
+        self.robot.backwardRampUp(100,1)
+        self.robot.turnLeftNoReset(20,0)
+        self.robot.resetMotorA()
