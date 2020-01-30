@@ -16,4 +16,7 @@ class CrossyRoad:
         self.robot.driveStraight(300,4.5,0)
         self.robot.alignWall(100)
         self.robot.resetGyro()
-        self.robot.turnleft(20,90)
+        self.robot.turnLeftSloppy(20,90)
+        self.robot.reset()
+        self.robot.resetMotorD()
+        self.robot.resetMotorA()

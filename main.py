@@ -35,8 +35,8 @@ sensor4=TouchSensor(Port.S4)
 hoid= Robot(motorA,motorB,motorC,motorD,sensor1,sensor2,sensor3,sensor4)
 countED=0
 # Create the arrays
-names=["crane","muchPointExploit", "HoldmotorD", "deathish", "parkish","CrossyRoad","wheelchairlady","TreesDeath","Testunodos"]
-missions=[Crane(hoid),MuchPointExploit(hoid), HoldMotorD(hoid),Deathish(hoid),Parkish(hoid),CrossyRoad(hoid),WheelchairLady(hoid),TreesDeath(hoid),Testunodos(hoid)]
+names=["muchPointExploit", "crane", "HoldmotorD", "deathish", "CrossyRoad", "wheelchairlady", "Testunodos"]
+missions=[MuchPointExploit(hoid),Crane(hoid),HoldMotorD(hoid),Deathish(hoid),CrossyRoad(hoid),WheelchairLady(hoid),Testunodos(hoid)]
 
 def buttonrelease():
     while any(brick.buttons()):

@@ -14,7 +14,7 @@ class Deathish:
         self.robot.reset()
         self.robot.resetGyro()
         self.robot.attachMotorDHold(0,0,-1)
-        wait(1000)
+        # wait(1000)
         self.robot.driveStraight(200,4.8,0)
         self.robot.attachMotorD(5,.1,-1)
         wait(1000)
@@ -27,6 +27,10 @@ class Deathish:
         self.robot.resetGyro
         self.robot.turnright(10,45)
         self.robot.backward(100,5)
+
+        self.robot.reset()
+        self.robot.resetMotorD()
+        self.robot.resetMotorA()
         # self.robot.backwardRampUp(50,1.5)
         # self.robot.turnRightSloppy(10,35)
         # self.robot.backward(100,2.5)

@@ -24,3 +24,6 @@ class Testunodos:
         self.robot.backwardRampUp(100,1)
         self.robot.turnLeftNoReset(20,0)
         self.robot.resetMotorA()
+        self.robot.reset()
+        self.robot.resetMotorD()
+        self.robot.resetMotorA()

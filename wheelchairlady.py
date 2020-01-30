@@ -64,7 +64,9 @@ class WheelchairLady:
         self.robot.findLine(20,Color.BLACK,1)
         self.robot.driveStraight(200,3,-27)
 
-        
+        self.robot.reset()
+        self.robot.resetMotorD()
+        self.robot.resetMotorA()
         # # This took forever but I am glad it works.
     
     
