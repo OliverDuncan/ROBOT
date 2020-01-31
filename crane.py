@@ -16,11 +16,9 @@ class Crane:
         WL=100
         WS=50
 
-        self.robot.reset()
+        self.robot.resetAllMotors()
         self.robot.resetGyro()
-        self.robot.resetMotorA()
         motorA = self.robot.getMotorA()
-    
         
         self.robot.shallowTurn(30,40,22,1)
         self.robot.shallowTurn(40,30,-19,-1)
@@ -43,6 +41,4 @@ class Crane:
         self.robot.turnRightSloppy(25,40)
         wait(100)
         self.robot.alignWall(100)
-        self.robot.reset()
-        self.robot.resetMotorD()
-        self.robot.resetMotorA()
+        self.robot.resetAllMotors()

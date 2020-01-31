@@ -12,24 +12,22 @@ class Deathish:
     
     def run(self):
         self.robot.reset()
+        self.robot.resetMotorA()
         self.robot.resetGyro()
         self.robot.attachMotorDHold(0,0,-1)
-        # wait(1000)
+        # put block in tree
         self.robot.driveStraight(200,4.8,0)
         self.robot.attachMotorD(5,.1,-1)
         wait(300)
-        self.robot.resetGyro()
+        # back up from tree to do parkish
         self.robot.backwardRampUp(50,.3)
         self.robot.turnright(10,20)
         self.robot.backward(25,.5)
+        # drop parkish
         self.robot.attachMotorDHold(50,.4,1)
         self.robot.resetMotorA()
         self.robot.DogGearA(50,.25,-1)
+        # go home
         self.robot.alignWall(100)
-        self.robot.reset()
-        self.robot.resetMotorD()
-        self.robot.resetMotorA()
-        # self.robot.backwardRampUp(50,1.5)
-        # self.robot.turnRightSloppy(10,35)
-        # self.robot.backward(100,2.5)
-        # self.robot.attachMotorD(20,.5,1)
+        self.robot.resetAllMotors()
+        

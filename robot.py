@@ -28,26 +28,31 @@ class Robot:
 
     def getMotorA(self):
         return self.motorA
-    
 
     def reset(self):
         # this just resets all of the motor angle sensors 
         self.motorB.reset_angle(0)
         self.motorC.reset_angle(0)
         
-    
     def resetMotorA(self):
         self.motorA.reset_angle(0)
 
     def resetMotorD(self):
         self.motorD.reset_angle(0)
 
+    def resetAllMotors(self):
+        self.resetMotorA()
+        self.resetMotorD()
+        self.reset()
     
     def resetGyro(self):
         # this resets the gyro sensor
         self.gyroSensor.reset_angle(0)
 
-    def runForward(self,speed):#these 3 functions were created because this code was used quite often
+    #these 3 functions were created because this code was used quite often
+    def runForward(self,speed):
+        # to transition the degrees per second into a scale of 1 to 100, 100 being as fast as possible for the large motorA.run_timemotor
+        # which is 990 d/s
         self.motorB.run(speed*self.LAR_MOTOR)
         self.motorC.run(speed*self.LAR_MOTOR)
 
@@ -61,13 +66,11 @@ class Robot:
     def forward(self,speed,distance):# This is the function to move the robot forward.
         self.reset()# This resets the angles on all of the motors.
         # print("test")# This prints test on the computer for debugging
-        self.runForward(speed)# to transition the degrees per second into a scale of 1 to 100, 100 being as fast as possible for the large motorA.run_timeotor which is 990 d/s
-        # The motors will continue to run until they are told to stop, so until the motor angle is greater than the distance it will
+        self.runForward(speed)   
+        # The motors will continue to run until they are told to stop, so until the motor angle is greater than the distance
         while self.motorC.angle() < distance*self.DEG_TO_ROT:
             wait(5)
         self.stopRun()
-
-
 
     def backward(self,speed,distance): # This does the same as the forward but in reverse.
         self.reset()
@@ -103,18 +106,6 @@ class Robot:
     def turnLeftNoReset(self,speed,angle): #See Also turnright
         self.turnLeftSloppy(speed,angle*-1)
         self.turnRightSloppy(speed/2,angle-1)
-
-        # self.reset()
-        # self.motorB.run(speed*self.LAR_MOTOR)
-        # self.motorC.run(speed*-1*self.LAR_MOTOR)
-        # # print("turn")
-        # while self.gyroSensor.angle() > angle:
-        #     wait(1)
-        #     # print(self.gyroSensor.angle())
-        # while self.gyroSensor.angle() < ((angle)-1):
-        #     self.motorB.run(-speed/2*self.LAR_MOTOR)
-        #     self.motorC.run(speed/2*self.LAR_MOTOR)
-        # self.stopRun()
 
     def turnRightSloppy(self,speed,angle): # This pair of functions turns sloppily to save time in situations where it isn't nescessary to be precise.
         self.reset()
@@ -175,9 +166,6 @@ class Robot:
                 wait(1)
                 # print(self.motorA.angle())
             self.motorA.stop(Stop.HOLD)
-
-
-
 
     def attachMotorD(self,speed,distance,direction): # This rotates the large attachment motor.
         self.resetMotorD()
@@ -243,7 +231,7 @@ class Robot:
         while self.motorC.angle() < distance*self.DEG_TO_ROT and self.motorB.angle() < distance*self.DEG_TO_ROT:
             error = self.gyroSensor.angle()- angle
             error= error * -4
-            print(error)
+            # print(error)
             drivebase.drive(speed, error)
         self.stopRun()
         gyro= self.readGyro()
@@ -277,7 +265,7 @@ class Robot:
     def backwardRampUp(self,finalSpeed,distance): # accelerates backwards increasing by 10% until it reaches specified speed and distance
         accel=1.2
         self.reset()
-        speed=-5
+        speed=-2
         while speed*self.LAR_MOTOR > finalSpeed*self.LAR_MOTOR*-1 and  self.motorC.angle() > distance*self.DEG_TO_ROT*-1:
             self.runForward(speed)
             wait(1)
@@ -289,7 +277,7 @@ class Robot:
     def forwardRampUp(self,finalSpeed,distance): # same as backwards
         accel=1.1
         self.reset()
-        speed=5
+        speed=2
         while speed*self.LAR_MOTOR < finalSpeed*self.LAR_MOTOR and self.motorC.angle() < distance*self.DEG_TO_ROT :
             self.runForward(speed)
             wait(1)

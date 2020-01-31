@@ -11,8 +11,7 @@ class wheelchairlady:
        self.robot=robot
     def run(self):
         self.robot.resetGyro()
-        self.robot.reset()
-        self.robot.resetMotorA()
+        self.robot.resetAllMotors()
         self.robot.DogGearHoldNoReset(0,0,-1)
         self.robot.driveStraight(200,0.2,0)
         self.robot.dsf(100,Color.BLACK,1,0)
@@ -57,28 +56,26 @@ class wheelchairlady:
         self.robot.turnLeftNoReset(10,0)
         # alligns onto the wall
         self.robot.backwardRampUp(50,1.8)
-        # self.robot.resetGyro()
         self.robot.driveStraight(200,.85,0)
         self.robot.turnRightSloppy(30,75)
         self.robot.turnright(10,90)
         self.robot.driveStraight(200,3,90)
+        # drop swing
         self.robot.backwardRampUp(40,2.8)
         self.robot.turnLeftSloppy(30,-15)
         self.robot.turnLeftNoReset(15,0)
+        # align back on the wall
         self.robot.backwardRampUp(50,1.5)
         self.robot.driveStraight(200,1,0)
         self.robot.dsf(100,Color.WHITE,2,0)
         self.robot.dsf(100,Color.BLACK,2,0)
         self.robot.backwardRampUp(15,.5)
-        self.robot.turnright(15,-27)
-        wait(500)
+        self.robot.turnright(15,-30)
+        wait(100)
         self.robot.driveStraight(100,.5,-30)
         self.robot.dsf(100,Color.BLACK,1,-30)
+        # drive up the bridge
         self.robot.driveStraight(200,2.9,-30)  
-
-        self.robot.reset()
-        self.robot.resetMotorD()
-        self.robot.resetMotorA()
         # # This took forever but I am glad it works.
     
     
