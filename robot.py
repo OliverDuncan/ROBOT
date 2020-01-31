@@ -246,6 +246,11 @@ class Robot:
             print(error)
             drivebase.drive(speed, error)
         self.stopRun()
+        gyro= self.readGyro()
+        if gyro < angle: 
+            self.turnright(5,angle)
+        elif gyro > angle:
+            self.turnLeftNoReset(5,angle)
     
    
     def readGyro(self):
@@ -259,13 +264,13 @@ class Robot:
             while self.colorSensorleft.color() == Color.WHITE or self.colorSensorleft.color() == Color.BLACK:
                 while self.colorSensorleft.color() == Color.WHITE or self.colorSensorleft.color() == Color.BLACK:
                     wait(5)
-                wait(10)
+                wait(100)
                     # print(self.colorSensorleft.color())
         elif sensor == 2:
             while self.colorSensorright.color() == Color.WHITE or self.colorSensorright.color() == Color.BLACK:
                 while self.colorSensorright.color() == Color.WHITE or self.colorSensorright.color() == Color.BLACK:
                     wait(5)
-                wait(10)
+                wait(100)
                 # print(self.colorSensorright.color())
         self.stopRun()
 
@@ -314,3 +319,26 @@ class Robot:
             motor.run_until_stalled(speed*self.LAR_MOTOR, Stop.COAST, 100)
         elif direction == -1:
             motor.run_until_stalled(-speed*self.LAR_MOTOR, Stop.COAST, 100)
+
+    def dsf(self, speed, color, sensor, angle):
+        self.reset()
+        drivebase = DriveBase(self.motorC, self.motorB, 62.4, 101)
+        # print("findLine")
+        if sensor == 1:
+            while self.colorSensorleft.color() != color:
+                error = self.gyroSensor.angle()- angle
+                error= error * -4
+                drivebase.drive(speed, error)
+                # print(self.colorSensorleft.color())
+        elif sensor == 2:
+            while self.colorSensorright.color() != color:
+                error = self.gyroSensor.angle()- angle
+                error= error * -4
+                drivebase.drive(speed, error)
+                # print(self.colorSensorright.color())
+        self.stopRun()
+        gyro= self.readGyro()
+        if gyro < angle: 
+            self.turnright(5,angle)
+        elif gyro > angle:
+            self.turnLeftNoReset(5,angle)

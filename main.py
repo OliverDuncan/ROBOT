@@ -36,7 +36,7 @@ hoid= Robot(motorA,motorB,motorC,motorD,sensor1,sensor2,sensor3,sensor4)
 countED=0
 # Create the arrays
 names=["muchPointExploit", "crane", "HoldmotorD", "deathish", "CrossyRoad", "wheelchairlady", "Testunodos"]
-missions=[MuchPointExploit(hoid),Crane(hoid),HoldMotorD(hoid),Deathish(hoid),CrossyRoad(hoid),WheelchairLady(hoid),Testunodos(hoid)]
+missions=[MuchPointExploit(hoid),Crane(hoid),HoldMotorD(hoid),Deathish(hoid),CrossyRoad(hoid),wheelchairlady(hoid),Testunodos(hoid)]
 
 def buttonrelease():
     while any(brick.buttons()):
