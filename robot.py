@@ -362,7 +362,7 @@ class Robot:
         self.reset()
         finalSpeed = finalSpeed * -1 * self.LAR_MOTOR
         speed= 5 * -1 * self.LAR_MOTOR
-        while speed > finalSpeed
+        while speed > finalSpeed:
             self.motorB.run(speed)
             self.motorC.run(speed)
             wait(10)

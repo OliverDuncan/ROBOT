@@ -6,7 +6,7 @@ from pybricks.parameters import (Port, Stop, Direction, Button, Color,
 from pybricks.tools import print, wait, StopWatch
 from pybricks.robotics import DriveBase
 
-class WheelchairLady:
+class wheelchairlady:
     def  __init__(self, robot):
        self.robot=robot
     def run(self):
@@ -21,6 +21,11 @@ class WheelchairLady:
         self.robot.turnright(10,90)
         self.robot.driveStraight(250,3.5,90)
         # drops red block
+        gyro = self.robot.readGyro()
+        if gyro < 90: 
+            self.robot.turnright(5,90)
+        elif gyro > 90:
+            self.robot.turnLeftNoReset(5,90)
         self.robot.DogGearHoldNoReset(15,0.25,-1) 
         self.robot.forward(20,0.2) 
         self.robot.DogGearHoldNoReset(20,0,1)

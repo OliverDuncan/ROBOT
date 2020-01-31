@@ -12,7 +12,7 @@ from bridge import Bridge
 from crane import Crane
 from muchPointExploit import MuchPointExploit
 from elevator import Elevator
-from wheelchairlady import WheelchairLady
+from wheelchairlady import wheelchairlady
 from AllBatsAreDrones import AllBatsAreDrones
 from parkish import Parkish
 from testunodos import Testunodos
