@@ -180,7 +180,7 @@ class Robot:
 
 
     def attachMotorD(self,speed,distance,direction): # This rotates the large attachment motor.
-        self.reset()
+        self.resetMotorD()
         if direction == 1:
             self.motorD.run(speed*self.LAR_MOTOR)
             # print("forMotorDRotate")
