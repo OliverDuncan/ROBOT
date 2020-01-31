@@ -22,3 +22,6 @@ class TreesDeath:
         self.robot.attachMotorD(10,.1,1)
         self.robot.turnRightSloppy(20,1)
         self.robot.backwardRampUp(50,5)
+        self.robot.reset()
+        self.robot.resetMotorD()
+        self.robot.resetMotorA()
